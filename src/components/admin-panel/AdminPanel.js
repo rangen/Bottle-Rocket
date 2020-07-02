@@ -1,10 +1,32 @@
 import React, { Component } from 'react'
+import WinesContainer from '../wines-container/WinesContainer'
+import Analytics from '../analytics/Analytics'
+import './admin-panel.styles.scss'
 
 export class AdminPanel extends Component {
+  state = {
+
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3000/admin/data')
+    .then(res => res.json())
+    .then(json => {
+      this.setState({ 
+        offers: json.offers,
+        wines: json.wines,
+        users: json.users
+      })
+    })
+  }
+
   render() {
     return (
       <div>
-        Admin Panel
+    <h1>Current Subscribers: place holder</h1>
+    <div>
+      <Analytics />
+    </div>
       </div>
     )
   }
