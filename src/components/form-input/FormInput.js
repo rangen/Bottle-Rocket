@@ -14,7 +14,8 @@ export default class FormInput extends PureComponent {
     shippingAddress1: '',
     shippingAddress2: '',
     city: '',
-    zipcode: ''
+    zipcode: '',
+    state: "CA"
   }
 
   inputChanged = (event) => {
@@ -35,8 +36,7 @@ export default class FormInput extends PureComponent {
           <Input name='city' value={this.state.city} label='City:' chg={this.inputChanged} />
           <Input name='zipcode' value={this.state.zipcode} label='ZIP Code:' inputType='number' chg={this.inputChanged} />
 
-            <select className='form-input'>
-            <option>State</option>
+            <select name='state' onChange={(e)=>this.inputChanged(e)} value={this.state.state} className='form-input'>
             {Object.entries(states).map(([abb, name])=>
                           (<option key={abb} value={abb}>{name}</option>)
                       )}
