@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import WinesContainer from '../wines-container/WinesContainer'
 import Analytics from '../analytics/Analytics'
 import './admin-panel.styles.scss'
 
