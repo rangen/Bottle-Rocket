@@ -6,6 +6,8 @@ import SignUp from './pages/sign-up/SignUp'
 import { Route, Switch } from 'react-router-dom'
 import './App.css';
 
+const rootURL = 'http://localhost:3000'
+
 class App extends React.Component {
   render() {
     return (
