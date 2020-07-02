@@ -1,9 +1,10 @@
 import React from 'react'
+import AdminPanel from '../admin-panel/AdminPanel'
 
-function HomePage() {
+const HomePage = () => {
   return (
     <div>
-      HomePage
+      <AdminPanel />
     </div>
   )
 }
