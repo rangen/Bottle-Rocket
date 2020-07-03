@@ -35,7 +35,8 @@ export default class FormInput extends PureComponent {
                   body: data,
                   headers: {
                     "accept": "application/json",
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "credentials": 'include'
                         }
                 }
     fetch(target, config)

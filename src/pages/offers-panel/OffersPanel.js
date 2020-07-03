@@ -8,7 +8,7 @@ export class OffersPanel extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/admin/data')
+    fetch('http://localhost:3000/admin/data', {credentials: 'include'})
     .then(res => res.json())
     .then(json => {
       this.setState({
@@ -21,8 +21,9 @@ export class OffersPanel extends Component {
   getNameByWineId = () => {
     let wines = [...this.state.wines]
     let offers = [...this.state.offers]
-    let results = wines.filter(wine => offers.find(offer => wine.id === offer.wine_id))
-    return results.map(result => result.full_name)
+    offers.forEach(offer => {
+      offer.fullName = wines.find(wine=> wine.id === offer.wine_id).full_name
+    })
   }
 
 

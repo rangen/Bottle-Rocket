@@ -3,7 +3,7 @@ import React from 'react'
 const Analytics = () => {
   return (
     <div>
-      Data placeholder
+      <h1>Analytics placeholder</h1>
     </div>
   )
 }
