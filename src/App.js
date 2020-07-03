@@ -3,7 +3,7 @@ import HomePage from './pages/homepage/HomePage'
 import Header from './components/header/Header'
 import SignIn from './pages/sign-in/SignIn'
 import SignUp from './pages/sign-up/SignUp'
-import OffersPanel from './pages/offers/OffersPanel'
+import OffersPanel from './pages/offers-panel/OffersPanel'
 import WinesPanel from './pages/wines-panel/WinesPanel'
 import { Route, Switch } from 'react-router-dom'
 import './App.css';
@@ -24,7 +24,7 @@ class App extends React.Component {
       <div>
         <Header adminSignedIn={this.state.adminSignedIn} handleSignOut={this.handleSignOut} />
         <Switch>
-          <Route exact path='/' component={HomePage} />
+          <Route exact path='/' render={() => <HomePage adminSignedIn={this.state.adminSignedIn}/>} />
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
           <Route path='/offers' component={OffersPanel} />
