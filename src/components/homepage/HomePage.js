@@ -4,7 +4,7 @@ import AdminPanel from '../admin-panel/AdminPanel'
 const HomePage = () => {
   return (
     <div>
-      <AdminPanel />
+      <h1>Info about BottleRocket</h1>
     </div>
   )
 }

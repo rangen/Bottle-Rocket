@@ -1,15 +1,41 @@
 import React, { Component } from 'react'
+import Input from '../../components/input/input'
 
 class SignIn extends Component {
+  state = {
+    email: '',
+    password: ''
+  }
+
+  inputChanged = (event) => {
+    this.setState({[event.target.name]: event.target.value})
+  }
+
+  login = (event) => {
+    event.preventDefault();
+
+    const config = {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+              "accept": "application/json",
+              "content-type": "application/json"
+            },
+            body: JSON.stringify(this.state)
+    }
+
+    fetch('http://localhost:3000/login', config)
+      .then(resp=>resp.json())
+      .then(json=>this.props.afterLogin(json))
+  }
+
 
   render() {
     return (
       <div>
-        <form>
-          <label>Email: </label>
-          <input type='email' /> 
-          <label>Password: </label>
-          <input type='password' /> 
+        <form onSubmit={this.login} >
+          <Input name={'email'} chg={this.inputChanged} label={'Email'} />
+          <Input name={'password'} chg={this.inputChanged} label={'Password'} inputType={'password'} />
           <input type='submit' />
         </form>
       </div>
