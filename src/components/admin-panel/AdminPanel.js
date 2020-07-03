@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Analytics from '../analytics/Analytics'
 import './admin-panel.styles.scss'
 
-export class AdminPanel extends Component {
+class AdminPanel extends Component {
   state = {
 
   }
@@ -22,7 +22,7 @@ export class AdminPanel extends Component {
   render() {
     return (
       <div>
-    <h1>Current Subscribers: place holder</h1>
+    <h1>Current Subscribers: Place holder</h1>
     <div>
       <Analytics />
     </div>
