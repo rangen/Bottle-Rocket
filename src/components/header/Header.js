@@ -20,7 +20,7 @@ const Header = ({ isAdmin, loggedIn, firstName, email }) => {
 
         <NavLink 
               className='option' 
-              to={loggedIn ? '/home' : '/signup'}>
+              to={loggedIn ? '/update' : '/signup'}>
                 {loggedIn ? "My Account" : "Sign Up"}
         </NavLink>
       </div>

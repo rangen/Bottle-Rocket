@@ -6,6 +6,8 @@ import SignOut from './pages/sign-out/SignOut'
 import SignUp from './pages/sign-up/SignUp'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import './App.css';
+import UpdateProfile from './pages/update-profile/UpdateProfile';
+
 
 const rootURL = 'http://localhost:3000'
 
@@ -50,6 +52,9 @@ class App extends React.PureComponent {
           <Route exact path='/' component={HomePage} />
           <Route exact path='/signin' render={() =>(<SignIn afterLogin={this.afterLogin} />)} />
           <Route exact path='/signout' render={() =>(<SignOut afterLogout={this.afterLogout} />)} />
+
+          <Route exact path='/update' render={() =>(<UpdateProfile afterLogout={this.afterLogout} />)} />
+
           <Route exact path='/signup' component={SignUp} />
         </Switch>
       </div>
