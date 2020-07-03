@@ -1,10 +1,7 @@
 import React from 'react';
-import HomePage from './pages/homepage/HomePage'
 import Header from './components/header/Header'
-import SignIn from './pages/sign-in/SignIn'
-import SignOut from './pages/sign-out/SignOut'
-import SignUp from './pages/sign-up/SignUp'
-import { Route, Switch, withRouter } from 'react-router-dom'
+import MainContainer from './containers/main-container/MainContainer'
+import { withRouter } from 'react-router-dom'
 import './App.css';
 
 const rootURL = 'http://localhost:3000'
@@ -21,6 +18,7 @@ class App extends React.PureComponent {
     fetch('http://localhost:3000/autologin', {credentials: 'include'})
       .then(resp=>resp.json())
       .then(json=>this.checkLogin(json))
+
   }
 
   checkLogin = (json) => {
@@ -46,12 +44,11 @@ class App extends React.PureComponent {
             firstName={this.state.firstName}
             isAdmin={this.state.isAdmin}
         />
-        <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/signin' render={() =>(<SignIn afterLogin={this.afterLogin} />)} />
-          <Route exact path='/signout' render={() =>(<SignOut afterLogout={this.afterLogout} />)} />
-          <Route exact path='/signup' component={SignUp} />
-        </Switch>
+        <MainContainer 
+          afterLogin={this.afterLogin}
+          afterLogout={this.afterLogout}
+          isAdmin={this.state.isAdmin}
+        />
       </div>
     );
   }

@@ -7,9 +7,7 @@ const NewOfferForm = ({ offers, getNameByWineId }) => {
       <h1>New Offer</h1>
       <form>
       <select>
-      {offers.map(offer => {
-       return getNameByWineId().map(name => <option key={offer.id} value={offer.wine_id}>{name}</option>)
-      })}
+      {offers.map(offer => getNameByWineId().map(name => <option key={offer.id} value={offer.wine_id}>{name}</option>))}
       </select>
       </form>
     </div>

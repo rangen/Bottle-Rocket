@@ -2,10 +2,10 @@ import React from 'react'
 import AdminPanel from '../../components/admin-panel/AdminPanel'
 import About from '../../components/about/About'
 
-const HomePage = ({ adminSignedIn }) => {
+const HomePage = ({ isAdmin }) => {
   return (
     <div>
-      {adminSignedIn ? <AdminPanel /> : <About />}
+      {isAdmin ? <AdminPanel /> : <About />}
     </div>
   )
 }
