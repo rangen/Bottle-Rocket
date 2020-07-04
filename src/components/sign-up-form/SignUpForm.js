@@ -30,6 +30,10 @@ export default class SignUpForm extends PureComponent {
     return (
       <div className='group'>
         <form onSubmit={(e)=>this.props.submit(e, this.state)}>
+          
+          {/* More elegant solution for this soon */}
+          {Object.entries(this.props.errors).map(err=><h3>{`${err[0]} => ${err[1][0]}`}</h3>)}
+          
           <Input name='firstName' value={this.state.firstName} label='First Name:' chg={this.inputChanged} />
           <Input name='lastName' value={this.state.lastName} label='Last Name:' chg={this.inputChanged} />
           <Input name='email' value={this.state.email} label='Email:' inputType='email' chg={this.inputChanged} />
