@@ -39,7 +39,7 @@ class SignUp extends PureComponent {
 
   render() {
     if (this.state.success) {
-      return <>SignUp Complete!</>       //on successful signup!
+      return <><p>Signup complete!  Now sit back and wait for delicious grape juice offers to be sent to you.</p></>       //on successful signup!
     } else {
       //  signing up or form needs to be updated with error from backend (uniqueness fail for fields etc.)
       return (
