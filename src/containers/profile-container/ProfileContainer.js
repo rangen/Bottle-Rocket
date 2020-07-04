@@ -29,11 +29,7 @@ export class ProfileContainer extends Component {
     Promise.all(
       fetch('http://localhost:3000/logout', {
         method: 'DELETE',
-        credentials: 'include',
-        headers: {
-          "accept": "application/json",
-          "content-type": "application/json"
-          }
+        credentials: 'include'
       }), 
       fetch('http://localhost:3000/user/profile',{
         credentials: 'include',

@@ -40,14 +40,15 @@ class App extends React.PureComponent {
       <div>
         <Header 
             loggedIn={this.state.loggedIn} 
+            isAdmin={this.state.isAdmin}
             email={this.state.email}
             firstName={this.state.firstName}
-            isAdmin={this.state.isAdmin}
         />
         <MainContainer 
+          loggedIn={this.state.loggedIn}
+          isAdmin={this.state.isAdmin}
           afterLogin={this.afterLogin}
           afterLogout={this.afterLogout}
-          isAdmin={this.state.isAdmin}
         />
       </div>
     );

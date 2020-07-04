@@ -11,22 +11,50 @@ import { Route, Switch } from 'react-router-dom'
 
 class MainContainer extends React.Component  {
   render() {
-    const { isAdmin, afterLogin, afterLogout } = this.props
-    return (
-      <div>
-      <Switch>
-        <Route exact path='/' render={() => <HomePage isAdmin={isAdmin}/>} />
-        <Route exact path='/signin' render={() =>(<SignIn afterLogin={afterLogin} />)} />
-        <Route exact path='/signout' render={() =>(<SignOut afterLogout={afterLogout} />)} />
-        <Route exact path='/user/profile' component={ProfileContainer }/>
-        <Route path='/user/profile/edit' component={EditProfile}/>
-        <Route exact path='/signup' component={SignUp} />
-        <Route path='/wines' component={WinesPanel} />
-        <Route path='/offers' component={OffersPanel} />
-        <Route path='/subscribedusers' component={OffersPanel} />
-      </Switch>
-      </div>
-    )
+    const { loggedIn, isAdmin, afterLogin, afterLogout } = this.props
+
+    if (loggedIn) {
+      if (isAdmin) {
+        //Admin is logged in
+        return (
+        <>Main Container: Admin is logged in
+          <Switch>
+            <Route exact path='/' render={() => <HomePage isAdmin={isAdmin}/>} />
+            <Route exact path='/signin' render={() =>(<SignIn afterLogin={afterLogin} />)} />
+            <Route exact path='/signout' render={() =>(<SignOut afterLogout={afterLogout} />)} />
+            <Route exact path='/user/profile' component={ProfileContainer }/>
+            <Route path='/user/profile/edit' component={EditProfile}/>
+            <Route exact path='/signup' component={SignUp} />
+            <Route path='/wines' component={WinesPanel} />
+            <Route path='/offers' component={OffersPanel} />
+            <Route path='/subscribedusers' component={OffersPanel} />
+          </Switch>
+        </>
+        )
+      } else {
+        // SubscribedUser is logged in
+        return (
+          <>Main Container: User is logged in!
+            <Switch>
+              <Route exact path='/' render={() => <HomePage isAdmin={isAdmin}/>} />
+              <Route exact path='/signout' render={() =>(<SignOut afterLogout={afterLogout} />)} />
+              <Route exact path='/user/profile' component={ProfileContainer }/>
+              <Route path='/user/profile/edit' component={EditProfile}/>
+            </Switch>
+          </>
+        )
+      }
+    } else {
+      // No One is Logged In
+      return (
+          <>Main Container: Not Logged In! (default: splash screen)
+          <Switch>
+            <Route exact path='/signin' render={() =>(<SignIn afterLogin={afterLogin} />)} />
+            <Route exact path='/signup' component={SignUp} />
+          </Switch>
+          </>
+      )
+    }
   }
 }
 
