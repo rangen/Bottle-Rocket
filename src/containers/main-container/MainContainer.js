@@ -6,10 +6,10 @@ import HomePage from '../../pages/homepage/HomePage'
 import WinesPanel from '../../pages/wines-panel/WinesPanel'
 import OffersPanel from '../../pages/offers-panel/OffersPanel'
 import ProfileContainer from '../profile-container/ProfileContainer'
-import EditProfile from '../../pages/edit-profile/EditProfile'
 import { Route, Switch } from 'react-router-dom'
 
 class MainContainer extends React.Component  {
+  
   render() {
     const { loggedIn, isAdmin, afterLogin, afterLogout } = this.props
 
@@ -34,8 +34,7 @@ class MainContainer extends React.Component  {
             <Switch>
               <Route exact path='/' render={() => <HomePage isAdmin={isAdmin}/>} />
               <Route exact path='/signout' render={() =>(<SignOut afterLogout={afterLogout} />)} />
-              <Route exact path='/user/profile' component={ProfileContainer }/>
-              <Route path='/user/profile/edit' component={EditProfile}/>
+              <Route path='/user/profile' component={ProfileContainer} />
             </Switch>
           </>
         )
