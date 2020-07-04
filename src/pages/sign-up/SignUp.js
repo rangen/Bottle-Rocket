@@ -9,6 +9,7 @@ class SignUp extends PureComponent {
   }
 
   submitNewUser = (e, formContents) => {
+    const newState = {};
     e.preventDefault();
     console.log('Submitting New User Form!')
     console.dir(formContents)
@@ -26,12 +27,14 @@ class SignUp extends PureComponent {
                 }
 
     fetch(target, config)
-      .then(resp=>resp.json())
-      .then(json=>this.processSignUpResponse(json))
-  }
-
-  processSignUpResponse = (data) => {
-    debugger
+      .then(resp=> {
+                  newState.success = resp.status === 200
+                  return resp.json()
+              })
+      .then(json=>{
+                  newState.errors = json.errors || []
+      })
+      .then(()=>this.setState(newState))
   }
 
   render() {
