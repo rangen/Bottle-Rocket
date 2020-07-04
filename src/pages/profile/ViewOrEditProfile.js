@@ -1,27 +1,79 @@
 import React from 'react'
+import Input from '../../components/input/input'
+import states from '../../states'
 import { Link } from 'react-router-dom'
 import './view-or-edit-profile.styles.scss'
 
-const ViewOrEditProfile = ({ user, handleDelete }) => {
+const ViewOrEditProfile = ({ firstName, lastName, email, mobileNumber, shippingAddress1, shippingAddress2, city, state, zipcode, handleDelete, handleInputChange, handleEditSubmit }) => {
   //trying to plug in user data within the p tags. After looking at console logs it looks like
-  //fetch call is slow and when input user.data.attributes.firstName
+  //fetch call is slow and when input firstName
   //I get returned cannot read property of undefined
   //don't know how to wait for fetch call to be done before being able to use props 
-  console.log(user)
   return (
     <div>
-      <p>{}</p>
-      <p>last name</p>
-      <p>mobile number</p>
-      <p>address 1</p>
-      <p>address2</p>
-      <p>city</p>
-      <p>state</p>
-      <p>zip</p>
-      <p>enable/disable notification</p>
-      <Link to='/user/profile/edit'>
-        <button>Edit</button>
-      </Link>
+      <form onSubmit={(event) => handleEditSubmit(event)}>
+        <Input 
+          name='firstName' 
+          value={firstName}
+          label={firstName} 
+          chg={handleInputChange} 
+        />
+        <Input 
+          name='lastName' 
+          value={lastName} 
+          label={lastName} 
+          chg={handleInputChange} 
+        />
+        <Input 
+          name='email' 
+          value={email} 
+          label={email} 
+          inputType='email' 
+          chg={handleInputChange} 
+        />
+        <Input 
+          name='mobileNumber' 
+          value={mobileNumber} 
+          label={mobileNumber} 
+          inputType='tel' 
+          chg={handleInputChange} 
+        />
+        <Input 
+          name='shippingAddress1' 
+          value={shippingAddress1} 
+          label={shippingAddress1}
+          chg={handleInputChange}
+        />
+        <Input 
+          name='shippingAddress2' 
+          value={shippingAddress2} 
+          label={shippingAddress2}
+          chg={handleInputChange} 
+        />
+        <Input 
+          name='city' 
+          value={city} 
+          label={city} 
+          chg={handleInputChange} 
+        />
+        <Input 
+          name='zipcode' 
+          value={zipcode} 
+          label={zipcode} 
+          inputType='number' 
+          chg={handleInputChange} 
+        />
+
+          <select 
+            name='state' 
+            onChange={(e)=>handleInputChange(e)} 
+            value={state} 
+            className='form-input'
+          >
+          {Object.entries(states).map(([abb, name]) => (<option key={abb} value={abb}>{name}</option>))}
+          </select>
+        <input type='submit' />
+      </form>
       <Link to='/'>
         <button onClick={handleDelete}>Delete Profile</button>
       </Link>
