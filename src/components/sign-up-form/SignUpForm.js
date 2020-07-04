@@ -1,12 +1,12 @@
 import React , { PureComponent} from 'react'
-import './form-input.styles.scss'
+import './sign-up-form.styles.scss'
 import Input from '../input/input'
 
 import states from '../../states'
 const rootURL = 'http://localhost:3000'
 
 
-export default class FormInput extends PureComponent {
+export default class SignUpForm extends PureComponent {
   state = {
     firstName: '',
     lastName: '',
@@ -24,30 +24,12 @@ export default class FormInput extends PureComponent {
     this.setState({[event.target.name]: event.target.value})
   }
 
-  submitNewUser = (e) => {
-    e.preventDefault();
-    console.dir(this.state)
-    const data = JSON.stringify(this.state);
-    const target = `${rootURL}/subscriptions/new`
-    
-    const config = {
-                  method: "POST",
-                  body: data,
-                  headers: {
-                    "accept": "application/json",
-                    "Content-Type": "application/json",
-                    "credentials": 'include'
-                        }
-                }
-    fetch(target, config)
-      .then(resp=>resp.json())
-      .then(json=>console.log(json))
-  }
+  
 
   render() {
     return (
       <div className='group'>
-        <form onSubmit={(e)=>this.submitNewUser(e)}>
+        <form onSubmit={(e)=>this.props.submit(e, this.state)}>
           <Input name='firstName' value={this.state.firstName} label='First Name:' chg={this.inputChanged} />
           <Input name='lastName' value={this.state.lastName} label='Last Name:' chg={this.inputChanged} />
           <Input name='email' value={this.state.email} label='Email:' inputType='email' chg={this.inputChanged} />

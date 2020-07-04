@@ -20,14 +20,10 @@ class MainContainer extends React.Component  {
         <>Main Container: Admin is logged in
           <Switch>
             <Route exact path='/' render={() => <HomePage isAdmin={isAdmin}/>} />
-            <Route exact path='/signin' render={() =>(<SignIn afterLogin={afterLogin} />)} />
             <Route exact path='/signout' render={() =>(<SignOut afterLogout={afterLogout} />)} />
-            <Route exact path='/user/profile' component={ProfileContainer }/>
-            <Route path='/user/profile/edit' component={EditProfile}/>
-            <Route exact path='/signup' component={SignUp} />
             <Route path='/wines' component={WinesPanel} />
             <Route path='/offers' component={OffersPanel} />
-            <Route path='/subscribedusers' component={OffersPanel} />
+            {/* <Route path='/subscribedusers' component={OffersPanel} /> */}
           </Switch>
         </>
         )
