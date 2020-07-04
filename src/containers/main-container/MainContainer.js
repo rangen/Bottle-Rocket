@@ -10,21 +10,6 @@ import EditProfile from '../../pages/edit-profile/EditProfile'
 import { Route, Switch } from 'react-router-dom'
 
 class MainContainer extends React.Component  {
-  state = {
-    users: []
-  }
-
-  componentDidMount() {
-    fetch('http://localhost:3000/users', {credentials: 'include'})
-    .then(res => res.json())
-    .then(json => {
-      this.setState({ 
-        users: json
-      })
-    })
-  }
-
-
   render() {
     const { isAdmin, afterLogin, afterLogout } = this.props
     return (

@@ -12,8 +12,8 @@ export class OffersPanel extends Component {
     .then(res => res.json())
     .then(json => {
       this.setState({
-        offers: json.offers,
-        wines: json.wines
+        offers: json.offers.data,
+        wines: json.wines.data
       })
     })
   }
@@ -22,7 +22,7 @@ export class OffersPanel extends Component {
     let wines = [...this.state.wines]
     let offers = [...this.state.offers]
     offers.forEach(offer => {
-      offer.fullName = wines.find(wine=> wine.id === offer.wine_id).full_name
+      offer.fullName = wines.find(wine=> wine.id === offer.wine_id).attributes.fullName
     })
   }
 

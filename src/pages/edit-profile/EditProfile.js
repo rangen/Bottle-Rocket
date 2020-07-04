@@ -25,10 +25,10 @@ class EditProfile extends Component {
 
     const config = {
       method: "PATCH",
+      credentials: 'include',
       headers: {
         "accept": "application/json",
         "Content-Type": "application/json",
-        "credentials": 'include'
       },
       body: JSON.stringify(this.state)
     };

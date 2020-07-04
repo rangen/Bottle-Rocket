@@ -15,7 +15,7 @@ class AdminPanel extends Component {
       this.setState({ 
         offers: json.offers,
         wines: json.wines,
-        users: json.users
+        users: json.users.data
       })
     })
   }

@@ -3,9 +3,8 @@ import React from 'react'
 const SubscribedUser = ({ user }) => {
   return (
     <div>
-      <h3>{user.first_name}</h3>
-      <p>{user.email}</p>
-      <button>Email Offer</button>
+      <h3>{user.attributes.firstName}</h3>
+      <p>{user.attributes.email}</p>
     </div>
   )
 }
