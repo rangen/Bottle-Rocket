@@ -35,6 +35,15 @@ class App extends React.PureComponent {
     this.props.history.push('/')
   }
 
+  afterDestroy = () => {
+    this.setState({
+      loggedIn: false,
+      isAdmin: false,
+      email: null,
+      firstName: null
+    })
+  }
+
   render() {
     return (
       <div>
@@ -49,6 +58,7 @@ class App extends React.PureComponent {
           isAdmin={this.state.isAdmin}
           afterLogin={this.afterLogin}
           afterLogout={this.afterLogout}
+          afterDestroy={this.afterDestroy}
         />
       </div>
     );

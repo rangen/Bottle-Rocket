@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ViewOrEditProfile from '../../pages/profile/ViewOrEditProfile'
+import ProfileForm from '../../pages/profile/ProfileForm'
 import './profile-container.styles.scss'
 
 export class ProfileContainer extends Component {
@@ -8,47 +8,25 @@ export class ProfileContainer extends Component {
   }
 
   componentDidMount() {
-    const request = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/user/profile', {credentials: 'include'})
-        const json = await response.json()
-        this.assignState(json)
-      } catch (err){
-        console.log("error:", err)
-      }
-    }
-    request();
+    fetch('http://localhost:3000/user/profile', {credentials: 'include'})
+      .then(resp=>resp.json())
+      .then(json=>this.setFields(json.user.data.attributes))
+  
   }
 
-  assignState = (json) => {
-    this.setState({ 
-      firstName: json.user.data.attributes.firstName,
-      lastName: json.user.data.attributes.lastName,
-      email: json.user.data.attributes.email,
-      mobileNumber: json.user.data.attributes.mobileNumber,
-      shippingAddress1: json.user.data.attributes.shippingAddress1,
-      shippingAddress2: json.user.data.attributes.shippingAddress2,
-      city: json.user.data.attributes.city,
-      state: json.user.data.attributes.state,
-      zipcode: json.user.data.attributes.zipcode
-    })
+  setFields = (user) => {
+    this.setState(user)
   }
   
   handleDelete = () => {
-    //gives an error but still kind of works, basically trying to both log out and delete user
-    //if I just run a delete user, the cookies still recognize the person logged in
-    //even though they dont exist in the DB anymore
-    Promise.all(
-      fetch('http://localhost:3000/logout', {
-        method: 'DELETE',
-        credentials: 'include'
-      }), 
-      fetch('http://localhost:3000/user/profile',{
-        credentials: 'include',
-        method: "DELETE"
-      }))
-      .then(console.log)
-  }
+    const config = {
+                  method: "DELETE",
+                  credentials: 'include'
+    }
+    fetch('http://localhost:3000/user/profile', config)
+      .then(res=>this.props.afterDestroy)
+      
+    }
 
   handleInputChange = (event) => {
     const { name, value } = event.target
@@ -77,7 +55,7 @@ export class ProfileContainer extends Component {
   render() {
     return (
       <div>
-        <ViewOrEditProfile 
+        <ProfileForm 
           firstName={this.state.firstName}
           lastName={this.state.lastName} 
           email={this.state.email}

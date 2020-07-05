@@ -11,7 +11,7 @@ import { Route, Switch } from 'react-router-dom'
 class MainContainer extends React.Component  {
   
   render() {
-    const { loggedIn, isAdmin, afterLogin, afterLogout } = this.props
+    const { loggedIn, isAdmin, afterLogin, afterLogout, afterDestroy } = this.props
 
     if (loggedIn) {
       if (isAdmin) {
@@ -34,7 +34,7 @@ class MainContainer extends React.Component  {
             <Switch>
               <Route exact path='/' render={() => <HomePage isAdmin={isAdmin}/>} />
               <Route exact path='/signout' render={() =>(<SignOut afterLogout={afterLogout} />)} />
-              <Route path='/user/profile' component={ProfileContainer} />
+              <Route path='/user/profile' render={() =>(<ProfileContainer afterDestroy={afterDestroy} />)} />
             </Switch>
           </>
         )

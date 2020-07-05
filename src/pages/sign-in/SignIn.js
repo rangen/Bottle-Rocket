@@ -32,7 +32,7 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div>
+      <div className='group'>
         <form onSubmit={this.login} >
           <Input name={'email'} chg={this.inputChanged} label={'Email'} />
           <Input name={'password'} chg={this.inputChanged} label={'Password'} inputType={'password'} />

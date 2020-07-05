@@ -44,7 +44,7 @@ export default class SignUpForm extends PureComponent {
           <Input name='city' value={this.state.city} label='City:' chg={this.inputChanged} />
           <Input name='zipcode' value={this.state.zipcode} label='ZIP Code:' inputType='number' chg={this.inputChanged} />
 
-            <select name='state' onChange={(e)=>this.inputChanged(e)} value={this.state.state} className='form-input'>
+            <select name='state' onChange={(e)=>this.inputChanged(e)} value={this.state.state} >
             {Object.entries(states).map(([abb, name])=>
                           (<option key={abb} value={abb}>{name}</option>)
                       )}

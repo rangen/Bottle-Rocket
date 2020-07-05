@@ -2,65 +2,61 @@ import React from 'react'
 import Input from '../../components/input/input'
 import states from '../../states'
 import { Link } from 'react-router-dom'
-import './view-or-edit-profile.styles.scss'
+import './ProfileForm.styles.scss'
 
-const ViewOrEditProfile = ({ firstName, lastName, email, mobileNumber, shippingAddress1, shippingAddress2, city, state, zipcode, handleDelete, handleInputChange, handleEditSubmit }) => {
-  //trying to plug in user data within the p tags. After looking at console logs it looks like
-  //fetch call is slow and when input firstName
-  //I get returned cannot read property of undefined
-  //don't know how to wait for fetch call to be done before being able to use props 
+const ProfileForm = ({ firstName, lastName, email, mobileNumber, shippingAddress1, shippingAddress2, city, state, zipcode, handleDelete, handleInputChange, handleEditSubmit }) => {
+  if (firstName) {
   return (
-    <div>
+    <div className='group'>
       <form onSubmit={(event) => handleEditSubmit(event)}>
         <Input 
           name='firstName' 
           value={firstName}
-          label={firstName} 
+          label={'First Name'}
           chg={handleInputChange} 
         />
         <Input 
           name='lastName' 
-          value={lastName} 
-          label={lastName} 
+          value={lastName}
+          label={'Last Name'} 
           chg={handleInputChange} 
         />
         <Input 
           name='email' 
-          value={email} 
-          label={email} 
+          value={email}
+          label={'Email'} 
           inputType='email' 
           chg={handleInputChange} 
         />
         <Input 
           name='mobileNumber' 
-          value={mobileNumber} 
-          label={mobileNumber} 
+          value={mobileNumber}
+          label={'Mobile Number for SMS'} 
           inputType='tel' 
           chg={handleInputChange} 
         />
         <Input 
           name='shippingAddress1' 
-          value={shippingAddress1} 
-          label={shippingAddress1}
+          value={shippingAddress1}
+          label={'Delivery Address'} 
           chg={handleInputChange}
-        />
+          />
         <Input 
           name='shippingAddress2' 
-          value={shippingAddress2} 
-          label={shippingAddress2}
+          value={shippingAddress2}
+          label={'Apt / Unit / Other (revise!)'}
           chg={handleInputChange} 
         />
         <Input 
           name='city' 
-          value={city} 
-          label={city} 
+          value={city}
+          label={'City'} 
           chg={handleInputChange} 
         />
         <Input 
           name='zipcode' 
-          value={zipcode} 
-          label={zipcode} 
-          inputType='number' 
+          value={zipcode}
+          label={'ZIP'} 
           chg={handleInputChange} 
         />
 
@@ -79,6 +75,9 @@ const ViewOrEditProfile = ({ firstName, lastName, email, mobileNumber, shippingA
       </Link>
     </div>
   )
+  } else {
+    return null
+  }
 }
 
-export default ViewOrEditProfile
+export default ProfileForm
