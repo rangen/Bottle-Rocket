@@ -4,14 +4,15 @@ import Offer from '../../components/offer/Offer'
 
 export class OffersPanel extends Component {
   state = {
-    offers: [],
-    creatingNewOffer: false,
-    wines: []
+    selectedOffer: null,
+    mode: 'view'  // view broadcast create
   }
 
   submitNewOffer = (event, values) => {
     event.preventDefault();
-    console.dir(values)
+
+    const pickValues = (...keys) => obj => keys.reduce((a, e) => ({...a, [e]: obj[e] }), {})
+    const formData = pickValues('wineID', 'offerDateTime', 'numOffered')(values)
     const config = {
             method: 'POST',
             headers: {
@@ -19,43 +20,90 @@ export class OffersPanel extends Component {
               'content-type': 'application/json'
             },
             credentials: 'include',
-            body: JSON.stringify(values)
+            body: JSON.stringify(formData)
     }
     fetch('http://localhost:3000/offers/new', config)
-      .then(resp=>resp.json())
-      .then(json=>this.processNewAttempt(json))    
+      .then(resp=>this.processNewOffer(resp))
   }
 
-  processNewAttempt = (json) => {
-    //only after success       if new offer submit failed, data SHOULD be g2g
+  processNewOffer = (response) => {
+    if (response.status === 200) {
+      this.setState({
+        mode: 'view'
+      })
+      this.props.updateData();
+    } else {
+      //error handle newOffer failed!
+    }
+  }
+
+  setMode = (mode) => {
     this.setState({
-      creatingNewOffer: false
+      mode: mode
     })
-    this.props.updateData();
   }
 
-  toggleCreatingNew = () => {
+  deleteOffer = (event, id) => {
+    event.persist() //to help with button enable in other function on failed destroy
+    event.target.disabled = true
+    const config = {
+                  method: 'DELETE',
+                  credentials: 'include'
+    }
+
+    fetch(`http://localhost:3000/offers/${id}`, config)
+      .then(resp=>this.afterDelete(event, resp))
+  }
+
+  afterDelete = (event, response) => {
+    if (response.status === 200) {
+      this.props.updateData()
+    } else {
+      event.target.disabled = false
+      //Other error display about offer not successfully deleted here
+    }
+  }
+
+  broadcastOffer = (offerID) => {
+    console.log(`Going to view to broadcast Offer via BottleRocket SMS for offer ${offerID}!`)
     this.setState({
-      creatingNewOffer: !this.state.creatingNewOffer
+      mode: 'broadcast',
+      selectedOffer: offerID
     })
   }
 
   render() {
-    if (this.state.creatingNewOffer) {
-      return (
-        <NewOfferForm 
-          newOffer={this.submitNewOffer} 
-          wines={this.props.wines} 
-          cancel={this.toggleCreatingNew}
-          users={this.props.users} />
-      )
-    } else {
-      return (
-        <>
-          <h1>Offers<button onClick={this.toggleCreatingNew} >Create New Offer</button></h1>
-          {this.props.offers.map(offer => <Offer key={offer.id} offer={offer.attributes} />)}
-        </>
-      )
+    switch (this.state.mode) {
+      case 'create':
+        return (
+          <NewOfferForm 
+            newOffer={this.submitNewOffer} 
+            wines={this.props.wines} 
+            setMode={this.setMode}
+        />
+        )
+      case 'broadcast':
+        return <>Broadcast using Twilio Offer #{this.state.selectedOffer}
+                <button 
+                  type='button' 
+                  onClick={()=>this.setMode('view')}
+                >
+                Cancel
+                </button></>
+      default:            //default is view
+        return (
+          <>
+            <div>
+              <button onClick={()=>this.setMode('create')} >Create New Offer</button>
+            </div>
+            {this.props.offers.map(offer => <Offer 
+                                              key={offer.id} 
+                                              offerID={offer.id} 
+                                              deleteOffer={this.deleteOffer} 
+                                              broadcastOffer={this.broadcastOffer}
+                                              offer={offer.attributes} />)}
+          </>
+        )
     }
   }
 }
