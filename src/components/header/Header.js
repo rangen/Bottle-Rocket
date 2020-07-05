@@ -68,9 +68,14 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
    // ** Not Logged In Bar **
     return (
       <div className='header'>
-      {loggedIn? `Welcome ${firstName}(${isAdmin? 'Admin':'User'})!`: null}
       <div className='nav-options'>
-        
+
+        <NavLink 
+          className='option' 
+          to='/' >
+        LARGE BOTTLEROCKET LOGO HERE THAT TAKES NOT LOGGED IN BACK TO SPLASH SCREEN
+        </NavLink>
+
         <NavLink 
           className='option' 
           to='/signup' >
