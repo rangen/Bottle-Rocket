@@ -1,64 +1,94 @@
-import React from 'react';
-import NewWineForm from '../../components/new-wine-form/NewWineForm';
-import './wines-panel.styles.scss'
+import React, { PureComponent } from 'react'
+import NewWineForm from '../../components/new-wine-form/NewWineForm'
+import Wine from '../../components/wine/Wine'
 
-class WinesPanel extends React.Component {
+export class WinesPanel extends PureComponent {
   state = {
-    full_name: "",
-    price: "",
-    inventory: null,
-    color: "",
-    natural: false,
-    organic: false,
-    biodynamic: false
+    mode: 'view'  // view add
   }
 
-  handleChange = (event) => {
-    const { name, value } = event.target
-    this.setState({ [name]: value })
-  }
-
-  handleChecked = (event) => {
-    const { name } = event.target
-    this.setState({ [name]: !this.state.name} );
-  }
-
-  submitNewWine = (event) => {
+  submitNewWine = (event, values) => {
     event.preventDefault();
-    const data = JSON.stringify(this.state);
+
+    // const pickValues = (...keys) => obj => keys.reduce((a, e) => ({...a, [e]: obj[e] }), {})
+    // const formData = pickValues('wineID', 'offerDateTime', 'numOffered')(values)
     
     const config = {
-      method: "POST",
-      body: data,
-      headers: {
-        "accept": "application/json",
-        "Content-Type": "application/json"
-      }
+            method: 'POST',
+            headers: {
+              'accept': 'application/json',
+              'content-type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify(values)
     }
     fetch('http://localhost:3000/wines/new', config)
-      .then(resp=>resp.json())
-      .then(console.log)
+      .then(resp=>this.processNewWine(resp))
   }
 
+  processNewWine = (response) => {
+    if (response.status === 200) {
+      this.setState({
+        mode: 'view'
+      })
+      this.props.updateData();
+    } else {
+      //error handle newWine failed!
+    }
+  }
+
+  setMode = (mode) => {
+    this.setState({
+      mode: mode
+    })
+  }
+
+  deleteWine = (event, id) => {
+    event.persist() //to help with button enable in other function on failed destroy
+    event.target.disabled = true
+    const config = {
+                  method: 'DELETE',
+                  credentials: 'include'
+    }
+
+    fetch(`http://localhost:3000/wines/${id}`, config)
+      .then(resp=>this.afterDelete(event, resp))
+  }
+
+  afterDelete = (event, response) => {
+    if (response.status === 200) {
+      this.props.updateData()
+    } else {
+      event.target.disabled = false
+      //Other error display about offer not successfully deleted here
+    }
+  }
 
   render() {
-    return (
-      <div>
-        <h1>New Wine</h1>
-          <NewWineForm
-            handleChecked={this.handleChecked}
-            submitNewWine={this.submitNewWine}
-            handleChange={this.handleChange}
-            fullName={this.state.full_name}
-            price={this.state.price}
-            inventory={this.state.inventory}
-            color={this.state.color}
-            natural={this.state.natural}
-            organic={this.state.organic}
-            biodynamic={this.state.biodynamic}
-          />
-      </div>
-    )
+    switch (this.state.mode) {
+      case 'add':
+        return (
+          <NewWineForm 
+            newWine={this.submitNewWine}
+            setMode={this.setMode}
+        />
+        )
+      default:            //default is view
+        return (
+          <>
+            <div>
+              <button onClick={()=>this.setMode('add')} >Add New Wine</button>
+            </div>
+            {this.props.wines.map(wine => <Wine 
+                                              key={wine.id}
+                                              wine={wine}
+                                              wineID={wine.id} 
+                                              deleteWine={this.deleteWine} 
+                                            />
+                                    )}
+          </>
+        )
+    }
   }
 }
 
