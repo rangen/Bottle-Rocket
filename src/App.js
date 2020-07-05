@@ -11,7 +11,8 @@ class App extends React.PureComponent {
     loggedIn: false,
     isAdmin: false,
     email: null,
-    firstName: null
+    firstName: null,
+    loginError: null
   }
 
   componentDidMount() {
@@ -22,7 +23,19 @@ class App extends React.PureComponent {
   }
 
   checkLogin = (json) => {
-    this.setState({loggedIn: json.loggedIn, isAdmin: json.isAdmin, email: json.email, firstName: json.firstName})
+    this.setState({
+      loggedIn: json.loggedIn,
+      isAdmin: json.isAdmin,
+      email: json.email,
+      firstName: json.firstName,
+      loginError: json.error || null
+    })
+  }
+
+  clearLoginErrors = () => {
+    this.setState({
+      loginError: null
+    })
   }
 
   afterLogout = (json) => {
@@ -32,7 +45,18 @@ class App extends React.PureComponent {
 
   afterLogin = (json) => {
     this.checkLogin(json)
-    this.props.history.push('/')
+    if (json.loggedIn) {     //Only re-route on successful login, otherwise leave login component and re-render with errors
+      this.props.history.push('/')
+    }
+  }
+
+  afterDestroy = () => {
+    this.setState({
+      loggedIn: false,
+      isAdmin: false,
+      email: null,
+      firstName: null
+    })
   }
 
   render() {
@@ -46,9 +70,12 @@ class App extends React.PureComponent {
         />
         <MainContainer 
           loggedIn={this.state.loggedIn}
+          loginError={this.state.loginError}
           isAdmin={this.state.isAdmin}
+          clearLoginError={this.clearLoginErrors}
           afterLogin={this.afterLogin}
           afterLogout={this.afterLogout}
+          afterDestroy={this.afterDestroy}
         />
       </div>
     );

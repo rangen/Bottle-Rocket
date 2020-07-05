@@ -10,6 +10,7 @@ const Input = props => {
                         name={props.name}
                         className={props.inputClass}
                         placeholder={props.label}
+                        value={props.value}
                         type={props.inputType}
                  />
         </>
