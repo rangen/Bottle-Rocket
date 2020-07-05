@@ -5,23 +5,33 @@ import Offer from '../../components/offer/Offer'
 export class OffersPanel extends Component {
   state = {
     offers: [],
-    creatingNewOffer: false
-  }
-
-  componentDidMount() {
-    fetch('http://localhost:3000/admin/data', {credentials: 'include'})
-      .then(res => res.json())
-      .then(json => this.setState({
-        offers: json.offers.data,
-        wines: json.wines.data,
-        users: json.users.data
-      }))
+    creatingNewOffer: false,
+    wines: []
   }
 
   submitNewOffer = (event, values) => {
     event.preventDefault();
-    console.log(values)
-    
+    console.dir(values)
+    const config = {
+            method: 'POST',
+            headers: {
+              'accept': 'application/json',
+              'content-type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify(values)
+    }
+    fetch('http://localhost:3000/offers/new', config)
+      .then(resp=>resp.json())
+      .then(json=>this.processNewAttempt(json))    
+  }
+
+  processNewAttempt = (json) => {
+    //only after success       if new offer submit failed, data SHOULD be g2g
+    this.setState({
+      creatingNewOffer: false
+    })
+    this.props.updateData();
   }
 
   toggleCreatingNew = () => {
@@ -35,15 +45,15 @@ export class OffersPanel extends Component {
       return (
         <NewOfferForm 
           newOffer={this.submitNewOffer} 
-          wines={this.state.wines} 
+          wines={this.props.wines} 
           cancel={this.toggleCreatingNew}
-          users={this.state.users} />
+          users={this.props.users} />
       )
     } else {
       return (
         <>
           <h1>Offers<button onClick={this.toggleCreatingNew} >Create New Offer</button></h1>
-          {this.state.offers.map(offer => <Offer key={offer.id} offer={offer.attributes} />)}
+          {this.props.offers.map(offer => <Offer key={offer.id} offer={offer.attributes} />)}
         </>
       )
     }
