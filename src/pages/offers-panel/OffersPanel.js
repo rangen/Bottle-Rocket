@@ -4,14 +4,15 @@ import Offer from '../../components/offer/Offer'
 
 export class OffersPanel extends Component {
   state = {
-    offers: [],
     creatingNewOffer: false,
-    wines: []
+    selectedOffer: null
   }
 
   submitNewOffer = (event, values) => {
     event.preventDefault();
-    console.dir(values)
+
+    const pickValues = (...keys) => obj => keys.reduce((a, e) => ({...a, [e]: obj[e] }), {})
+    const formData = pickValues('wineID', 'offerDateTime', 'numOffered')(values)
     const config = {
             method: 'POST',
             headers: {
@@ -19,7 +20,7 @@ export class OffersPanel extends Component {
               'content-type': 'application/json'
             },
             credentials: 'include',
-            body: JSON.stringify(values)
+            body: JSON.stringify(formData)
     }
     fetch('http://localhost:3000/offers/new', config)
       .then(resp=>this.processNewOffer(resp))
@@ -63,6 +64,10 @@ export class OffersPanel extends Component {
     }
   }
 
+  broadcastOffer = (offerID) => {
+    console.log(`Going to view to broadcast Offer via BottleRocket SMS for offer ${offerID}!`)
+  }
+
   render() {
     if (this.state.creatingNewOffer) {
       return (
@@ -70,13 +75,20 @@ export class OffersPanel extends Component {
           newOffer={this.submitNewOffer} 
           wines={this.props.wines} 
           cancel={this.toggleCreatingNew}
-          users={this.props.users} />
+       />
       )
     } else {
       return (
         <>
-          <h1>Offers<button onClick={this.toggleCreatingNew} >Create New Offer</button></h1>
-          {this.props.offers.map(offer => <Offer key={offer.id} offerID={offer.id} deleteOffer={this.deleteOffer} offer={offer.attributes} />)}
+          <div>
+            <button onClick={this.toggleCreatingNew} >Create New Offer</button>
+          </div>
+          {this.props.offers.map(offer => <Offer 
+                                            key={offer.id} 
+                                            offerID={offer.id} 
+                                            deleteOffer={this.deleteOffer} 
+                                            broadcastOffer={this.broadcastOffer}
+                                            offer={offer.attributes} />)}
         </>
       )
     }
