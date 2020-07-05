@@ -11,7 +11,7 @@ class AdminPanel extends Component {
   state = {
     users: [],
     offers: [],
-    users: [],
+    wines: [],
     dataFetchInProgress: false,
     dataNeedsUpdate: true
   }
