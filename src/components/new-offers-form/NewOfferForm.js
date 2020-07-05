@@ -35,7 +35,7 @@ export default class NewOfferForm extends React.PureComponent {
   }
 
   render() {
-    const {wines, newOffer, cancel} = this.props
+    const {wines, newOffer, setMode} = this.props
     const { offerDateTime } = this.state
     const disabled = !this.state.wineSelected
 
@@ -93,7 +93,11 @@ export default class NewOfferForm extends React.PureComponent {
           </div>
           
           <div>
-            <button onClick={cancel} >Cancel</button>
+            <button type='button'
+              onClick={()=>setMode('view')} >
+            Cancel
+            </button>
+            
             <button
               disabled={disabled}
               type='submit'>

@@ -4,8 +4,8 @@ import Offer from '../../components/offer/Offer'
 
 export class OffersPanel extends Component {
   state = {
-    creatingNewOffer: false,
-    selectedOffer: null
+    selectedOffer: null,
+    mode: 'view'  // view broadcast create
   }
 
   submitNewOffer = (event, values) => {
@@ -29,7 +29,7 @@ export class OffersPanel extends Component {
   processNewOffer = (response) => {
     if (response.status === 200) {
       this.setState({
-        creatingNewOffer: false
+        mode: 'view'
       })
       this.props.updateData();
     } else {
@@ -37,9 +37,9 @@ export class OffersPanel extends Component {
     }
   }
 
-  toggleCreatingNew = () => {
+  setMode = (mode) => {
     this.setState({
-      creatingNewOffer: !this.state.creatingNewOffer
+      mode: mode
     })
   }
 
@@ -66,31 +66,44 @@ export class OffersPanel extends Component {
 
   broadcastOffer = (offerID) => {
     console.log(`Going to view to broadcast Offer via BottleRocket SMS for offer ${offerID}!`)
+    this.setState({
+      mode: 'broadcast',
+      selectedOffer: offerID
+    })
   }
 
   render() {
-    if (this.state.creatingNewOffer) {
-      return (
-        <NewOfferForm 
-          newOffer={this.submitNewOffer} 
-          wines={this.props.wines} 
-          cancel={this.toggleCreatingNew}
-       />
-      )
-    } else {
-      return (
-        <>
-          <div>
-            <button onClick={this.toggleCreatingNew} >Create New Offer</button>
-          </div>
-          {this.props.offers.map(offer => <Offer 
-                                            key={offer.id} 
-                                            offerID={offer.id} 
-                                            deleteOffer={this.deleteOffer} 
-                                            broadcastOffer={this.broadcastOffer}
-                                            offer={offer.attributes} />)}
-        </>
-      )
+    switch (this.state.mode) {
+      case 'create':
+        return (
+          <NewOfferForm 
+            newOffer={this.submitNewOffer} 
+            wines={this.props.wines} 
+            setMode={this.setMode}
+        />
+        )
+      case 'broadcast':
+        return <>Broadcast using Twilio Offer #{this.state.selectedOffer}
+                <button 
+                  type='button' 
+                  onClick={()=>this.setMode('view')}
+                >
+                Cancel
+                </button></>
+      default:            //default is view
+        return (
+          <>
+            <div>
+              <button onClick={()=>this.setMode('create')} >Create New Offer</button>
+            </div>
+            {this.props.offers.map(offer => <Offer 
+                                              key={offer.id} 
+                                              offerID={offer.id} 
+                                              deleteOffer={this.deleteOffer} 
+                                              broadcastOffer={this.broadcastOffer}
+                                              offer={offer.attributes} />)}
+          </>
+        )
     }
   }
 }
