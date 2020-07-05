@@ -16,14 +16,14 @@ class MainContainer extends React.Component  {
       if (isAdmin) {
         //Admin is logged in
         return (
-        <>Main Container: Admin is logged in
+        <>
           <AdminPanel afterLogout={afterLogout} />
         </>
         )
       } else {
         // SubscribedUser is logged in
         return (
-          <>Main Container: User is logged in!
+          <>
             <Switch>
               <Route exact path='/' render={() => <HomePage isAdmin={isAdmin}/>} />
               <Route exact path='/signout' render={() =>(<SignOut afterLogout={afterLogout} />)} />
@@ -35,7 +35,7 @@ class MainContainer extends React.Component  {
     } else {
       // No One is Logged In
       return (
-          <>Main Container: Not Logged In! (default: splash screen)
+          <>(need splash screen for app  i.e. HOW BOTTLEROCKET WORKS)
           <Switch>
             <Route exact path='/signin' render={() =>(<SignIn error={loginError} clearError={clearLoginError} afterLogin={afterLogin} />)} />
             <Route exact path='/signup' component={SignUp} />
