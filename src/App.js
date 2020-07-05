@@ -32,6 +32,12 @@ class App extends React.PureComponent {
     })
   }
 
+  clearLoginErrors = () => {
+    this.setState({
+      loginError: null
+    })
+  }
+
   afterLogout = (json) => {
     this.checkLogin(json)
     this.props.history.push('/')
@@ -66,6 +72,7 @@ class App extends React.PureComponent {
           loggedIn={this.state.loggedIn}
           loginError={this.state.loginError}
           isAdmin={this.state.isAdmin}
+          clearLoginError={this.clearLoginErrors}
           afterLogin={this.afterLogin}
           afterLogout={this.afterLogout}
           afterDestroy={this.afterDestroy}

@@ -11,6 +11,10 @@ class SignIn extends Component {
     this.setState({[event.target.name]: event.target.value})
   }
 
+  componentWillUnmount() {
+    this.props.clearError()
+  }
+
   login = (event) => {
     event.preventDefault();
 
