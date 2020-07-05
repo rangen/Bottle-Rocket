@@ -34,6 +34,7 @@ class SignIn extends Component {
     return (
       <div className='group'>
         <form onSubmit={this.login} >
+          {this.props.error ? <h3>{this.props.error}</h3> : null}
           <Input name={'email'} chg={this.inputChanged} label={'Email'} />
           <Input name={'password'} chg={this.inputChanged} label={'Password'} inputType={'password'} />
           <input type='submit' />
