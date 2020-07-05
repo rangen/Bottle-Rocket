@@ -6,11 +6,20 @@ class WinesPanel extends React.Component {
   state = {
     full_name: "",
     price: "",
-    inventory: null,
+    inventory: "",
     color: "",
     natural: false,
     organic: false,
-    biodynamic: false
+    biodynamic: false,
+    // image: ""
+  }
+
+  handlePreviewImage = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      this.setState({
+        image: URL.createObjectURL(event.target.files[0])
+      });
+    }
   }
 
   handleChange = (event) => {
@@ -30,6 +39,7 @@ class WinesPanel extends React.Component {
     const config = {
       method: "POST",
       body: data,
+      credentials: 'include',
       headers: {
         "accept": "application/json",
         "Content-Type": "application/json"
@@ -56,6 +66,8 @@ class WinesPanel extends React.Component {
             natural={this.state.natural}
             organic={this.state.organic}
             biodynamic={this.state.biodynamic}
+            image={this.state.image}
+            handlePreviewImage={this.handlePreviewImage}
           />
       </div>
     )

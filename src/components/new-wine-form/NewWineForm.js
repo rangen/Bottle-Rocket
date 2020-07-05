@@ -2,7 +2,7 @@ import React from 'react';
 import './new-wine-form.styles.scss';
 import Input from '../input/input';
 
-const NewWineForm = ({ handleChange, fullName, price, inventory, color, natural, organic, biodynamic, submitNewWine, handleChecked }) => {
+const NewWineForm = ({ handleChange, fullName, price, inventory, color, natural, organic, biodynamic, submitNewWine, handleChecked, image, handlePreviewImage }) => {
   return (
     <div>
       <form onSubmit={(e) => submitNewWine(e)}>
@@ -19,6 +19,9 @@ const NewWineForm = ({ handleChange, fullName, price, inventory, color, natural,
         <label>Biodynamic:
           <input name='biodynamic' value={biodynamic} type='checkbox' checked={biodynamic} onChange={handleChecked} />
         </label>
+        <label>Image:</label>
+        <input type='file' name='image' accept="image/*" onChange={handlePreviewImage}/>
+        <img src={image} alt="" style={{width: '10%', height: "10%"}} />
         <input type='submit' />
       </form>
     </div>
