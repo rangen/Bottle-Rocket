@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import bottlerocketalt from '../../assets/logo/bottlerocketalt.jpg'
 import './header.styles.scss'
 
 const Header = ({ isAdmin, loggedIn, firstName }) => {
@@ -8,6 +9,9 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
             // **Admin Nav Bar **
             return (
               <div className='header'>
+                <NavLink className='logo-container' to="/">
+                  <img src={bottlerocketalt} className='logo' alt='Logo' />
+                </NavLink>
                 {`Welcome ${firstName}(Admin)!`}
                 <div className='nav-options'>
                   <NavLink 
@@ -39,7 +43,7 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
         <NavLink 
           className='option' 
           to='/'>
-        Home
+          <img src={bottlerocketalt} alt='Logo' className='logo' />
         </NavLink>
         
         <NavLink 
@@ -70,11 +74,9 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
       <div className='header'>
       <div className='nav-options'>
 
-        <NavLink 
-          className='option' 
-          to='/' >
-        LARGE BOTTLEROCKET LOGO HERE THAT TAKES NOT LOGGED IN BACK TO SPLASH SCREEN
-        </NavLink>
+      <NavLink className='logo-container' to="/">
+        <img src={bottlerocketalt} alt='Logo' className='logo' />
+      </NavLink>
 
         <NavLink 
           className='option' 

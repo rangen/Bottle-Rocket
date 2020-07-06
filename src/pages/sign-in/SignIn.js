@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Input from '../../components/input/input'
+import './sign-in.styles.scss'
 
 class SignIn extends Component {
   state = {
@@ -36,13 +37,16 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div className='group'>
-        <form onSubmit={this.login} >
-          {this.props.error ? <h3>{this.props.error}</h3> : null}
-          <Input name={'email'} chg={this.inputChanged} label={'Email'} />
-          <Input name={'password'} chg={this.inputChanged} label={'Password'} inputType={'password'} />
-          <input type='submit' />
-        </form>
+      <div className='sign-in'>
+        <h1 className='title'>Sign In</h1>
+        <div className='group'>
+          <form onSubmit={this.login} >
+            {this.props.error ? <h3>{this.props.error}</h3> : null}
+            <Input type='email'name='email' value={this.state.email} handleChange={this.inputChanged} label={'Email'} />
+            <Input type='password' value={this.state.password} name={'password'} handleChange={this.inputChanged} label={'Password'} />
+            <input type='submit' />
+          </form>
+        </div>
       </div>
     )
   }

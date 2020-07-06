@@ -43,7 +43,7 @@ class SignUp extends PureComponent {
     } else {
       //  signing up or form needs to be updated with error from backend (uniqueness fail for fields etc.)
       return (
-        <div className='group'>
+        <div className='sign-up-container'>
           <h1 className='title'>Sign Up for BottleRocket</h1>
           <SignUpForm submit={this.submitNewUser} errors={this.state.errors} />
         </div>

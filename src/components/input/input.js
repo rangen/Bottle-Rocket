@@ -1,25 +1,15 @@
 import React from 'react'
 import './input.styles.scss'
 
-const Input = props => {
-
-    return (
-        <>  
-                <input
-                        onChange={(e)=>props.chg(e)}
-                        name={props.name}
-                        className={props.inputClass}
-                        placeholder={props.label}
-                        value={props.value}
-                        type={props.inputType}
-                 />
-        </>
-        )
-}
-
-Input.defaultProps = {
-        inputType: 'text',
-        inputClass: 'form-input'
-}
+const Input = ({ handleChange, label, ...otherProps }) =>  (
+  <div className="group">
+    <input className='form-input' onChange={handleChange} { ...otherProps } />
+    {label ? (
+      <label className={`${otherProps.value.length ? 'shrink' : ''} form-input-label`}>
+        {label}
+      </label>
+      ) : null }
+  </div>
+)
 
 export default Input;
