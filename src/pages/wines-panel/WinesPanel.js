@@ -7,21 +7,20 @@ export class WinesPanel extends PureComponent {
     mode: 'view'  // view add
   }
 
-  submitNewWine = (event, values) => {
+  submitNewWine = (event, image) => {
     event.preventDefault();
 
     // const pickValues = (...keys) => obj => keys.reduce((a, e) => ({...a, [e]: obj[e] }), {})
     // const formData = pickValues('wineID', 'offerDateTime', 'numOffered')(values)
-    
+    const formData = new FormData(event.target)
+    formData.append("image", image)
+
     const config = {
             method: 'POST',
-            headers: {
-              'accept': 'application/json',
-              'content-type': 'application/json'
-            },
             credentials: 'include',
-            body: JSON.stringify(values)
+            body: formData
     }
+    
     fetch('http://localhost:3000/wines/new', config)
       .then(resp=>this.processNewWine(resp))
   }

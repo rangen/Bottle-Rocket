@@ -1,6 +1,8 @@
 import React from 'react';
 import './new-wine-form.styles.scss';
 import Input from '../input/input';
+import * as ActiveStorage from '@rails/activestorage'
+ActiveStorage.start()
 
 export default class NewWineForm extends React.PureComponent {
   
@@ -12,13 +14,15 @@ export default class NewWineForm extends React.PureComponent {
     natural: false,
     organic: false,
     biodynamic: false,
-    image: ''
+    image: null
   }
+
   handlePreviewImage = (event) => {
-    if (event.target.files && event.target.files[0]) {
+    if (event.target.files[0]) { //way to add code to limit to one file in picker?
       this.setState({
-        image: URL.createObjectURL(event.target.files[0])
-      });
+        image: event.target.files[0],
+        preview: URL.createObjectURL(event.target.files[0])
+      })
     }
   }
 
@@ -38,30 +42,71 @@ export default class NewWineForm extends React.PureComponent {
 
   render() {
     const { newWine } = this.props
-    const { fullName, price, inventory, color, natural, organic, biodynamic, image } = this.state
+    const { fullName, preview, price, inventory, color, natural, organic, biodynamic } = this.state
     const chg = this.handleChange
 
     return (
       <div className='group'>
         <h3>Add New Wine</h3>
-        <form onSubmit={(e) => newWine(e, this.state)}>
-        <Input name="full_name" value={fullName} chg={chg} label='Full Name:' />
-        <Input name='price' value={price} chg={chg} label='Price:'/>
-        <Input name='inventory'  value={inventory} chg={chg} label='Inventory:'/>
-        <Input name='color' value={color} chg={chg} label='Color:'/>
-        <label>Natural:
-        <input name='natural' value={natural} type='checkbox' checked={natural} onChange={chg} />
-        </label>
-        <label>Organic:
-          <input name='organic' value={organic} type='checkbox' checked={organic} onChange={chg} />
-        </label>
-        <label>Biodynamic:
-          <input name='biodynamic' value={biodynamic} type='checkbox' checked={biodynamic} onChange={chg} />
-        </label>
-        <label>Image:</label>
-        <input type='file' name='image' accept="image/*" onChange={this.handlePreviewImage}/>
-        <img src={image} alt="" style={{width: '10%', height: "10%"}} />
-        <input type='submit' />
+        <form 
+          onSubmit={(e) => newWine(e, this.state.image)}
+          encType='multipart/form-data'
+        >
+          <input 
+            type='file'
+            name='image'
+            accept='image/*'
+            onChange={this.handlePreviewImage}
+          />
+          <img 
+            src={preview} alt="" 
+            style={{width: '250px', height: "250px"}} 
+          />
+
+          <Input name="fullName" 
+            chg={chg} 
+            label='Wine Name (full)' 
+          />
+          <Input 
+            name='price'
+            chg={chg} 
+            label='Price:'
+          />
+          <Input 
+            name='inventory' 
+            chg={chg} 
+            label='Inventory:'
+          />
+          <Input 
+            name='color' 
+            chg={chg} 
+            label='Color:'
+          />
+          <label>Natural:
+            <input 
+              name='natural' 
+              type='checkbox' 
+              checked={natural} 
+              onChange={chg} 
+            />
+          </label>
+          <label>Organic:
+            <input 
+              name='organic' 
+              type='checkbox' 
+              checked={organic} 
+              onChange={chg} 
+            />
+          </label>
+          <label>Biodynamic:
+            <input 
+              name='biodynamic' 
+              type='checkbox' 
+              checked={biodynamic} 
+              onChange={chg} 
+            />
+          </label>
+          <input type='submit' />
         </form>
       </div>
     )
