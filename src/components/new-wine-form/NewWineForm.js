@@ -1,7 +1,7 @@
 import React from 'react';
 import './new-wine-form.styles.scss';
 import Input from '../input/input';
-import * as ActiveStorage from 'activestorage'
+import * as ActiveStorage from '@rails/activestorage'
 ActiveStorage.start()
 
 export default class NewWineForm extends React.PureComponent {
