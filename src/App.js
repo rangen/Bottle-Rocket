@@ -23,13 +23,29 @@ class App extends React.PureComponent {
   }
 
   checkLogin = (json) => {
+    if (json.expires) {  //setTimeout interval IF logged in (has expiry key)
+      const expiresIn = Date.parse(json.expires) - Date.now()
+      setTimeout(this.logout, expiresIn)
+    }
     this.setState({
       loggedIn: json.loggedIn,
       isAdmin: json.isAdmin,
       email: json.email,
       firstName: json.firstName,
+      logsOutAt: json.expires || null,
       loginError: json.error || null
     })
+  }
+
+  logout = () => {
+    this.setState({
+      loggedIn: false,
+      isAdmin: false,
+      email: null,
+      firstName: null,
+      logsOutAt: null,
+      loginError: 'Your session timed out. Please login.'
+    }, () => this.props.history.push('/signin'))
   }
 
   clearLoginErrors = () => {
