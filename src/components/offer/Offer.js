@@ -1,18 +1,22 @@
 import React from 'react'
+import './offer.styles.scss'
+import { Button } from '@material-ui/core'
 
 const Offer = ({ offer, deleteOffer, offerID, broadcastOffer }) => {
   return (
-    <>
-      <h3>{offer.fullName}</h3>
-      <h4>Date of Offer: {offer.offerDateTime}    Sold: {offer.numSold || 0}/{offer.numOffered}</h4>
+    <div className="card hoverable">
+      <h4>{offer.fullName}</h4>
+      <h5>Date of Offer: {offer.offerDateTime}    Sold: {offer.numSold || 0}/{offer.numOffered}</h5>
       <div>
-        <h4>Offer{offer.isActiveOffer ? " Active" : " Inactive"}
-          <button onClick={(e)=>deleteOffer(e, offerID)} >Delete Offer</button>
-          <button onClick={()=>broadcastOffer(offerID)} >Broadcast this Offer Now</button>
+        <h6>Offer{offer.isActiveOffer ? " Active" : " Inactive"}
+          <div className='card-action'>
+          <Button className='button' color='primary' variant="contained" onClick={()=>broadcastOffer(offerID)} >Broadcast Offer</Button>
+          <Button className='button' color='secondary' variant="contained" onClick={(e)=>deleteOffer(e, offerID)} >Delete Offer</Button>
           {/* Rocket icon in button !! */}
-        </h4>
+          </div>
+        </h6>
       </div>
-    </>
+    </div>
   )
 }
 

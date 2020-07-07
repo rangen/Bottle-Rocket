@@ -102,14 +102,16 @@ export class WinesPanel extends PureComponent {
             <div>
               <Button color='primary' variant="contained" onClick={()=>this.setMode('add')} >Add New Wine</Button>
             </div>
-            <div className='wine-container'>
-            {this.props.wines.map(wine => <Wine 
+            <div className='row'>
+            {this.props.wines.map(wine => (
+              <div className='col s12 m3'>
+              <Wine 
                                               key={wine.id}
                                               wine={wine}
                                               wineID={wine.id} 
                                               deleteWine={this.deleteWine} 
                                             />
-                                    )}
+                                    </div>))}
                                     </div>
           </>
         )

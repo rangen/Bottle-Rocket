@@ -1,0 +1,9 @@
+.card-action {
+  display: flex;
+  justify-content: space-evenly;
+  height: 60px;
+  .button {
+    font-size: 10px;
+    height: 30px;
+  }
+}

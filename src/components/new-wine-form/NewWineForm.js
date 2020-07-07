@@ -50,6 +50,7 @@ export default class NewWineForm extends React.PureComponent {
       <div className='group'>
         <h3>Add New Wine</h3>
         <form 
+          action='#'
           onSubmit={(e) => newWine(e, this.state.image)}
           encType='multipart/form-data'
         >
@@ -64,23 +65,28 @@ export default class NewWineForm extends React.PureComponent {
             style={{width: '250px', height: "250px"}} 
           />
 
-          <Input name="fullName" 
-            chg={chg} 
+          <Input 
+            type='text'
+            name="fullName" 
+            handleChange={chg} 
             label='Wine Name (full)' 
           />
           <Input 
+            type='text'
             name='price'
-            chg={chg} 
+            handleChange={chg} 
             label='Price:'
           />
-          <Input 
+          <Input
+            type='text'  
             name='inventory' 
-            chg={chg} 
+            handleChange={chg} 
             label='Inventory:'
           />
           <Input 
+            type='text'
             name='color' 
-            chg={chg} 
+            handleChange={chg} 
             label='Color:'
           />
           <label>Natural:

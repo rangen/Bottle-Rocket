@@ -37,7 +37,7 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div className='sign-in'>
+      <div className='group'>
         <h1 className='title'>Sign In</h1>
           <form onSubmit={this.login} >
             {this.props.error ? <h3>{this.props.error}</h3> : null}

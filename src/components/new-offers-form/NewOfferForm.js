@@ -83,7 +83,8 @@ export default class NewOfferForm extends React.PureComponent {
           <div>
             <label htmlFor='offer-time'>Choose a Date/Time to SMS this Offer:</label>
 
-            <input type='datetime-local' 
+            <input 
+                type='datetime-local' 
                 id='offer-time'
                 name='offerDateTime'
                 value={offerDateTime}
