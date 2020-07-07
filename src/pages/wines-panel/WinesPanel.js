@@ -1,27 +1,47 @@
 import React, { PureComponent } from 'react'
 import NewWineForm from '../../components/new-wine-form/NewWineForm'
 import Wine from '../../components/wine/Wine'
+import { DirectUpload } from '@rails/activestorage'
+import api from '../../services/api'
 
 export class WinesPanel extends PureComponent {
   state = {
-    mode: 'view'  // view add
+    mode: 'view',  // view add
+    hasImageAttached: false,
+    image: null
   }
 
-  submitNewWine = (event, image) => {
-    event.preventDefault();
+  directUpload = (file) => {
+    const upload = new DirectUpload(file, `${api.API_ROOT}/images/direct_upload`)
+    upload.create((this.directUploadComplete))
+  }
+  
+  directUploadComplete = (error, response) =>{
+    this.setState({
+      hasImageAttached: (!error && !!response.key),
+      image: response.key || null
+    })
+  }
 
+
+
+  submitNewWine = (event) => {
+    event.preventDefault();
+    if (!this.state.hasImageAttached) {
+      return //block form submit if no image attached
+    }
     // const pickValues = (...keys) => obj => keys.reduce((a, e) => ({...a, [e]: obj[e] }), {})
     // const formData = pickValues('wineID', 'offerDateTime', 'numOffered')(values)
     const formData = new FormData(event.target)
-    formData.append("image", image)
-
+    formData.append("imageKey", this.state.image)
+    
     const config = {
             method: 'POST',
             credentials: 'include',
             body: formData
     }
     
-    fetch('http://localhost:3000/wines/new', config)
+    api.admin.newWine(config)
       .then(resp=>this.processNewWine(resp))
   }
 
@@ -50,9 +70,9 @@ export class WinesPanel extends PureComponent {
                   credentials: 'include'
     }
 
-    fetch(`http://localhost:3000/wines/${id}`, config)
+    api.admin.deleteWine(id, config)
       .then(resp=>this.afterDelete(event, resp))
-  }
+        }
 
   afterDelete = (event, response) => {
     if (response.status === 200) {
@@ -68,6 +88,8 @@ export class WinesPanel extends PureComponent {
       case 'add':
         return (
           <NewWineForm 
+            hasImg={this.state.hasImageAttached}
+            upload={this.directUpload}
             newWine={this.submitNewWine}
             setMode={this.setMode}
         />

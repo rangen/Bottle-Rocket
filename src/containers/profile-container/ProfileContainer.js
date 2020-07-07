@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ProfileForm from '../../pages/profile/ProfileForm'
 import './profile-container.styles.scss'
+import api from '../../services/api'
 
 export class ProfileContainer extends Component {
   state = {
@@ -8,7 +9,7 @@ export class ProfileContainer extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/user/profile', {credentials: 'include'})
+    api.user.show()
       .then(resp=>resp.json())
       .then(json=>this.setFields(json.user.data.attributes))
   
@@ -23,7 +24,7 @@ export class ProfileContainer extends Component {
                   method: "DELETE",
                   credentials: 'include'
     }
-    fetch('http://localhost:3000/user/profile', config)
+    api.user.destroy(config)
       .then(res=>this.props.afterDestroy)
       
     }
@@ -46,7 +47,7 @@ export class ProfileContainer extends Component {
       body: JSON.stringify(this.state)
     };
 
-    fetch('http://localhost:3000/user/profile', config)
+    api.user.update(config)
       .then(res => res.json())
       .then(console.log)
   }
