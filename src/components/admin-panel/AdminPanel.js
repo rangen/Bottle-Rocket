@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom'
 import SignOut from '../../pages/sign-out/SignOut'
 import WinesPanel from '../../pages/wines-panel/WinesPanel'
 import OffersPanel from '../../pages/offers-panel/OffersPanel'
+import api from '../../services/api'
 
 class AdminPanel extends Component {
   state = {
@@ -34,7 +35,7 @@ class AdminPanel extends Component {
       this.setState({
         dataFetchInProgress: true
       }, () => {
-              fetch('http://localhost:3000/admin/data', {credentials: 'include'})
+              api.admin.getData()
                 .then(res => res.json())
                 .then(json => {
                   this.setState({ 

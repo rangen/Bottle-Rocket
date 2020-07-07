@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NewOfferForm from '../../components/new-offers-form/NewOfferForm'
 import Offer from '../../components/offer/Offer'
+import api from '../../services/api'
 
 export class OffersPanel extends Component {
   state = {
@@ -22,7 +23,7 @@ export class OffersPanel extends Component {
             credentials: 'include',
             body: JSON.stringify(formData)
     }
-    fetch('http://localhost:3000/offers/new', config)
+    api.admin.newOffer(config)
       .then(resp=>this.processNewOffer(resp))
   }
 
@@ -51,7 +52,7 @@ export class OffersPanel extends Component {
                   credentials: 'include'
     }
 
-    fetch(`http://localhost:3000/offers/${id}`, config)
+    api.admin.deleteOffer(id, config)
       .then(resp=>this.afterDelete(event, resp))
   }
 

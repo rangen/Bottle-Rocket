@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import SignUpForm from '../../components/sign-up-form/SignUpForm'
 import './sign-up.styles.scss'
+import api from '../../services/api'
 
 class SignUp extends PureComponent {
   state = {
@@ -11,10 +12,7 @@ class SignUp extends PureComponent {
   submitNewUser = (e, formContents) => {
     const newState = {};
     e.preventDefault();
-    console.log('Submitting New User Form!')
-    console.dir(formContents)
     const data = JSON.stringify(formContents);
-    const target = `http://localhost:3000/subscriptions/new`
     
     const config = {
                   method: "POST",
@@ -26,7 +24,7 @@ class SignUp extends PureComponent {
                   }
                 }
 
-    fetch(target, config)
+    api.app.signUp(config)
       .then(resp=> {
                   newState.success = resp.status === 200
                   return resp.json()
