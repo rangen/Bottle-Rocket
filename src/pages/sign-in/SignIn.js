@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Input from '../../components/input/input'
+import api from '../../services/api'
 
 class SignIn extends Component {
   state = {
@@ -28,7 +29,7 @@ class SignIn extends Component {
             body: JSON.stringify(this.state)
     }
 
-    fetch('http://localhost:3000/login', config)
+    api.auth.login(config)
       .then(resp=>resp.json())
       .then(json=>this.props.afterLogin(json))
   }

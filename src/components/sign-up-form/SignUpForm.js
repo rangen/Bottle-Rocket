@@ -3,8 +3,6 @@ import './sign-up-form.styles.scss'
 import Input from '../input/input'
 
 import states from '../../states'
-const rootURL = 'http://localhost:3000'
-
 
 export default class SignUpForm extends PureComponent {
   state = {

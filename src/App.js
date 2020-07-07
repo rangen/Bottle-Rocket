@@ -3,8 +3,7 @@ import Header from './components/header/Header'
 import MainContainer from './containers/main-container/MainContainer'
 import { withRouter } from 'react-router-dom'
 import './App.css';
-
-const rootURL = 'http://localhost:3000'
+import api from './services/api'
 
 class App extends React.PureComponent {
   state = {
@@ -16,7 +15,7 @@ class App extends React.PureComponent {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3000/autologin', {credentials: 'include'})
+    api.auth.autoLogin()
       .then(resp=>resp.json())
       .then(json=>this.checkLogin(json))
 

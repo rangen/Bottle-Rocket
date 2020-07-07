@@ -18,11 +18,12 @@ export default class NewWineForm extends React.PureComponent {
   }
 
   handlePreviewImage = (event) => {
-    if (event.target.files[0]) { //way to add code to limit to one file in picker?
+    const imgFile = event.target.files[0]
+    if (imgFile) { //way to add code to limit to one file in picker?
       this.setState({
-        image: event.target.files[0],
-        preview: URL.createObjectURL(event.target.files[0])
-      })
+        image: imgFile,
+        preview: URL.createObjectURL(imgFile)
+      }, this.props.upload(imgFile))
     }
   }
 
@@ -40,7 +41,7 @@ export default class NewWineForm extends React.PureComponent {
   }
 
   render() {
-    const { newWine } = this.props
+    const { newWine, hasImg } = this.props
     const { fullName, preview, price, inventory, color, natural, organic, biodynamic } = this.state
     const chg = this.handleChange
 
@@ -105,7 +106,9 @@ export default class NewWineForm extends React.PureComponent {
               onChange={chg} 
             />
           </label>
-          <input type='submit' />
+          <input type='submit'
+            disabled={!hasImg}
+          />
         </form>
       </div>
     )

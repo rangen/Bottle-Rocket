@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import api from '../../services/api'
 
 class SignOut extends Component {
 
@@ -33,7 +34,7 @@ class SignOut extends Component {
             }
     }
 
-    fetch('http://localhost:3000/logout', config)
+    api.auth.logout(config)
       .then(resp=>resp.json())
       .then(json=>this.props.afterLogout(json))
   }
