@@ -1,4 +1,8 @@
 .group {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  .buttons {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    }
 }

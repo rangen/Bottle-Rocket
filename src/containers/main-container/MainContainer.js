@@ -10,13 +10,14 @@ import { Route, Switch } from 'react-router-dom'
 class MainContainer extends React.Component  {
   
   render() {
-    const { loggedIn, isAdmin, afterLogin, afterLogout, afterDestroy, loginError, clearLoginError } = this.props
+    const { loggedIn, isAdmin, afterLogin, afterLogout, afterDestroy, loginError, clearLoginError, firstName } = this.props
 
     if (loggedIn) {
       if (isAdmin) {
         //Admin is logged in
         return (
         <>
+        <h1>{`Welcome ${firstName}(Admin)!`}</h1>
           <AdminPanel afterLogout={afterLogout} />
         </>
         )

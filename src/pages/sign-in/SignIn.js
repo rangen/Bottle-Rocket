@@ -39,14 +39,12 @@ class SignIn extends Component {
     return (
       <div className='sign-in'>
         <h1 className='title'>Sign In</h1>
-        <div className='group'>
           <form onSubmit={this.login} >
             {this.props.error ? <h3>{this.props.error}</h3> : null}
-            <Input type='email'name='email' value={this.state.email} handleChange={this.inputChanged} label={'Email'} />
-            <Input type='password' value={this.state.password} name={'password'} handleChange={this.inputChanged} label={'Password'} />
-            <input type='submit' />
+                <Input type='email'name='email' value={this.state.email} handleChange={this.inputChanged} label={'Email'} />
+                <Input type='password' value={this.state.password} name={'password'} handleChange={this.inputChanged} label={'Password'} />
+                <input type='submit' />
           </form>
-        </div>
       </div>
     )
   }

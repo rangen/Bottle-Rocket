@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './components/header/Header'
 import MainContainer from './containers/main-container/MainContainer'
+import Footer from './components/footer/Footer'
 import { withRouter } from 'react-router-dom'
 import './App.css';
 
@@ -92,7 +93,11 @@ class App extends React.PureComponent {
           afterLogin={this.afterLogin}
           afterLogout={this.afterLogout}
           afterDestroy={this.afterDestroy}
+          firstName={this.state.firstName}
         />
+        <div className='space'>
+        </div>
+        <Footer />
       </div>
     );
   }

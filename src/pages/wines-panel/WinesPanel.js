@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import NewWineForm from '../../components/new-wine-form/NewWineForm'
 import Wine from '../../components/wine/Wine'
+import { Button } from '@material-ui/core'
+import './wines-panel.styles.scss'
 
 export class WinesPanel extends PureComponent {
   state = {
@@ -76,8 +78,9 @@ export class WinesPanel extends PureComponent {
         return (
           <>
             <div>
-              <button onClick={()=>this.setMode('add')} >Add New Wine</button>
+              <Button color='primary' variant="contained" onClick={()=>this.setMode('add')} >Add New Wine</Button>
             </div>
+            <div className='wine-container'>
             {this.props.wines.map(wine => <Wine 
                                               key={wine.id}
                                               wine={wine}
@@ -85,6 +88,7 @@ export class WinesPanel extends PureComponent {
                                               deleteWine={this.deleteWine} 
                                             />
                                     )}
+                                    </div>
           </>
         )
     }
