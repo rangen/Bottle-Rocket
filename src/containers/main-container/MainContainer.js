@@ -11,7 +11,6 @@ class MainContainer extends React.Component  {
   
   render() {
     const { loggedIn, isAdmin, afterLogin, afterLogout, afterDestroy, loginError, clearLoginError, firstName } = this.props
-
     if (loggedIn) {
       if (isAdmin) {
         //Admin is logged in
