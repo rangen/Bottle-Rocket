@@ -5,8 +5,8 @@ import { Button } from '@material-ui/core'
 import './wines-panel.styles.scss'
 import { DirectUpload } from '@rails/activestorage'
 import api from '../../services/api'
-// const API_ROOT = 'https://ancient-thicket-66765.herokuapp.com'
-const API_ROOT = 'http://localhost:3000'
+const API_ROOT = 'https://ancient-thicket-66765.herokuapp.com'
+// const API_ROOT = 'http://localhost:3000'
 
 export class WinesPanel extends PureComponent {
   state = {
@@ -21,11 +21,12 @@ export class WinesPanel extends PureComponent {
   }
   
   directUploadComplete = (error, response) =>{
-    console.log(response)
-    this.setState({
-      hasImageAttached: (!error && !!response.key),
-      image: response.key || null
-    })
+    if (!error) { //only set state if returned properly
+      this.setState({
+        hasImageAttached: true,
+        image: response.key
+      })
+    }
   }
 
 
