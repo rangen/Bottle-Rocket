@@ -41,15 +41,17 @@ export default class SignUpForm extends PureComponent {
               <Input type='text' name='shippingAddress2' value={this.state.shippingAddress2} label='Apt / Other (revise this text):' handleChange={this.inputChanged} />
               <Input type='text' name='city' value={this.state.city} label='City:' handleChange={this.inputChanged} />
                 <Input type='number' name='zipcode' value={this.state.zipcode} label='ZIP Code:'  handleChange={this.inputChanged} />
-                <Select className='form-input' name='state' onChange={(e)=>this.inputChanged(e)} value={this.state.state}>
+                <select className="browser-default" name='state' onChange={(e)=>this.inputChanged(e)} value={this.state.state}>
                 {Object.entries(states).map(([abb, name])=>
-                  (<MenuItem key={abb} value={abb}>{name}</MenuItem>)
+                  (<option key={abb} value={abb}>{name}</option>)
                   )}
-                  </Select>
+                  </select>
                 {Object.entries(this.props.errors).map(err=><h3>{`${err[0]} => ${err[1][0]}`}</h3>)}
                 <div className='buttons'>
-                <Button variant="contained" color='primary'>Cancel</Button>
-                <Button variant="contained" color='primary' type='submit'>Submit</Button>
+                <button className='btn red'>Cancel</button>
+                <button className="btn waves-effect waves-light light-blue accent-4" type="submit" name="action">Submit
+                  <i className="material-icons right">send</i>
+                </button> 
                 </div>
         </form>
             </div>

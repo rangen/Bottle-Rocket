@@ -1,5 +1,6 @@
 import React from 'react'
-import { Button, Divider, makeStyles } from '@material-ui/core'
+import { Button, makeStyles } from '@material-ui/core'
+import theme from '../../theme'
 import './wine.styles.scss'
 
 const useStyles = makeStyles((theme) => ({
@@ -7,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '10px'
   },
   button: {
-    height: '10%',
+    height: '35px',
     width: '46%'
   }
 }));
@@ -19,7 +20,7 @@ const Wine = ({ wine, deleteWine, wineID }) => {
     // <div className='col s12 m3'>
       <div className="card hoverable">
         <div className="card-image">
-          <img className='responsive-image circle' alt='' src='https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.pngpix.com%2Fwp-content%2Fuploads%2F2016%2F10%2FPNGPIX-COM-Wine-Bottle-PNG-Transparent-Image.png&f=1&nofb=1' />
+          <img className='responsive-image' alt='' src='https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.pngpix.com%2Fwp-content%2Fuploads%2F2016%2F10%2FPNGPIX-COM-Wine-Bottle-PNG-Transparent-Image.png&f=1&nofb=1' />
           <span>{wine.attributes.fullName}</span>
         </div>
         <div className='card-action'>

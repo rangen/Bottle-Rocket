@@ -5,6 +5,7 @@ import { Button } from '@material-ui/core'
 import './wines-panel.styles.scss'
 import { DirectUpload } from '@rails/activestorage'
 import api from '../../services/api'
+// const API_ROOT = 'http://localhost:3000'
 
 export class WinesPanel extends PureComponent {
   state = {
@@ -15,10 +16,12 @@ export class WinesPanel extends PureComponent {
 
   directUpload = (file) => {
     const upload = new DirectUpload(file, `${api.API_ROOT}/images/direct_upload`)
+    console.log(upload)
     upload.create((this.directUploadComplete))
   }
   
   directUploadComplete = (error, response) =>{
+    console.log(response)
     this.setState({
       hasImageAttached: (!error && !!response.key),
       image: response.key || null

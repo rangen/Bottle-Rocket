@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import bottlerocketalt from '../../assets/logo/bottlerocketalt.jpg'
+import { ReactComponent as Logo } from '../../assets/logo/rocket-svgrepo-com.svg'
 import './header.styles.scss'
 
 const Header = ({ isAdmin, loggedIn, firstName }) => {
@@ -73,6 +73,7 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
       <div className='header'>
       
       <NavLink className='logo-container' to="/">
+        <Logo />
         <span className='logo'>bottlerocket</span>
       </NavLink>
       <div className='nav-options'>

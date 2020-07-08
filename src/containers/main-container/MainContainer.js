@@ -17,7 +17,7 @@ class MainContainer extends React.Component  {
         //Admin is logged in
         return (
         <>
-        <h1>{`Welcome ${firstName}(Admin)!`}</h1>
+        <h3>{`Welcome ${firstName}(Admin)!`}</h3>
           <AdminPanel afterLogout={afterLogout} />
         </>
         )

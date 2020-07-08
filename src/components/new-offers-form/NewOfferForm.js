@@ -25,7 +25,7 @@ export default class NewOfferForm extends React.PureComponent {
       }
       if (ele.name === 'wineID') {
         newState.wineSelected = true      //otherwise enable rest of form
-        newState.maxForThisWine = this.props.wines.find(wine=>wine.id === +ele.value).attributes.inventory
+        newState.maxForThisWine = this.props.wines.find(wine=>wine.id == +ele.value).attributes.inventory
         if (newState.maxForThisWine < this.state.numOffered) {
           newState.numOffered = newState.maxForThisWine
         }
@@ -54,6 +54,7 @@ export default class NewOfferForm extends React.PureComponent {
 
 
           <select 
+              className="browser-default"
               name='wineID'
               onChange={this.handleChange}
               required
@@ -83,8 +84,7 @@ export default class NewOfferForm extends React.PureComponent {
           <div>
             <label htmlFor='offer-time'>Choose a Date/Time to SMS this Offer:</label>
 
-            <input 
-                type='datetime-local' 
+            <input type='datetime-local' 
                 id='offer-time'
                 name='offerDateTime'
                 value={offerDateTime}

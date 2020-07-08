@@ -62,7 +62,7 @@ export default class NewWineForm extends React.PureComponent {
           />
           <img 
             src={preview} alt="" 
-            style={{width: '250px', height: "250px"}} 
+            style={{width: '20%', height: "20%"}} 
           />
 
           <Input 
@@ -89,30 +89,41 @@ export default class NewWineForm extends React.PureComponent {
             handleChange={chg} 
             label='Color:'
           />
-          <label>Natural:
-            <input 
-              name='natural' 
-              type='checkbox' 
-              checked={natural} 
-              onChange={chg} 
-            />
-          </label>
-          <label>Organic:
-            <input 
-              name='organic' 
-              type='checkbox' 
-              checked={organic} 
-              onChange={chg} 
-            />
-          </label>
-          <label>Biodynamic:
-            <input 
-              name='biodynamic' 
-              type='checkbox' 
-              checked={biodynamic} 
-              onChange={chg} 
-            />
-          </label>
+          <div className='checkbox-container'>
+            <p>
+              <label>
+                <input 
+                name='natural' 
+                type="checkbox" 
+                checked={natural} 
+                onChange={chg} 
+                />
+                <span>Natural</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input 
+                name='organic' 
+                type='checkbox' 
+                checked={organic} 
+                onChange={chg} 
+                />
+                <span>Organic</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input 
+                  name='biodynamic' 
+                  type='checkbox' 
+                  checked={biodynamic} 
+                  onChange={chg} 
+                />
+                <span>Biodynamic</span>
+              </label>
+            </p>
+          </div>
           <input type='submit'
             disabled={!hasImg}
           />

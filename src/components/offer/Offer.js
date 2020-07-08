@@ -7,7 +7,7 @@ const Offer = ({ offer, deleteOffer, offerID, broadcastOffer }) => {
     <div className="card hoverable">
       <h4>{offer.fullName}</h4>
       <h5>Date of Offer: {offer.offerDateTime}    Sold: {offer.numSold || 0}/{offer.numOffered}</h5>
-      <div>
+      <div className='test'>
         <h6>Offer{offer.isActiveOffer ? " Active" : " Inactive"}
           <div className='card-action'>
           <Button className='button' color='primary' variant="contained" onClick={()=>broadcastOffer(offerID)} >Broadcast Offer</Button>
