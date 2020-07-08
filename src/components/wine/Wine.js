@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, makeStyles } from '@material-ui/core'
-import theme from '../../theme'
+// import theme from '../../theme'
 import './wine.styles.scss'
 
 const useStyles = makeStyles((theme) => ({
