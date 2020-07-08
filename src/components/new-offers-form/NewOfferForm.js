@@ -54,6 +54,7 @@ export default class NewOfferForm extends React.PureComponent {
 
 
           <select 
+              className="browser-default"
               name='wineID'
               onChange={this.handleChange}
               required

@@ -1,16 +1,16 @@
 import React from 'react';
 import './new-wine-form.styles.scss';
 import Input from '../input/input';
-import * as ActiveStorage from '@rails/activestorage'
-ActiveStorage.start()
+// import * as ActiveStorage from '@rails/activestorage'
+// ActiveStorage.start()
 
 export default class NewWineForm extends React.PureComponent {
   
   state = {
     fullName: '',
-    price: null,
-    inventory: null,
-    color: null,
+    price: "",
+    inventory: "",
+    color: "",
     natural: false,
     organic: false,
     biodynamic: false,
@@ -39,6 +39,7 @@ export default class NewWineForm extends React.PureComponent {
     
     this.setState(newState)
   }
+  
 
   render() {
     const { newWine, hasImg } = this.props
@@ -49,6 +50,7 @@ export default class NewWineForm extends React.PureComponent {
       <div className='group'>
         <h3>Add New Wine</h3>
         <form 
+          action='#'
           onSubmit={(e) => newWine(e, this.state.image)}
           encType='multipart/form-data'
         >
@@ -60,52 +62,68 @@ export default class NewWineForm extends React.PureComponent {
           />
           <img 
             src={preview} alt="" 
-            style={{width: '250px', height: "250px"}} 
+            style={{width: '20%', height: "20%"}} 
           />
 
-          <Input name="fullName" 
-            chg={chg} 
+          <Input 
+            type='text'
+            name="fullName" 
+            handleChange={chg} 
             label='Wine Name (full)' 
           />
           <Input 
+            type='text'
             name='price'
-            chg={chg} 
+            handleChange={chg} 
             label='Price:'
           />
-          <Input 
+          <Input
+            type='text'  
             name='inventory' 
-            chg={chg} 
+            handleChange={chg} 
             label='Inventory:'
           />
           <Input 
+            type='text'
             name='color' 
-            chg={chg} 
+            handleChange={chg} 
             label='Color:'
           />
-          <label>Natural:
-            <input 
-              name='natural' 
-              type='checkbox' 
-              checked={natural} 
-              onChange={chg} 
-            />
-          </label>
-          <label>Organic:
-            <input 
-              name='organic' 
-              type='checkbox' 
-              checked={organic} 
-              onChange={chg} 
-            />
-          </label>
-          <label>Biodynamic:
-            <input 
-              name='biodynamic' 
-              type='checkbox' 
-              checked={biodynamic} 
-              onChange={chg} 
-            />
-          </label>
+          <div className='checkbox-container'>
+            <p>
+              <label>
+                <input 
+                name='natural' 
+                type="checkbox" 
+                checked={natural} 
+                onChange={chg} 
+                />
+                <span>Natural</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input 
+                name='organic' 
+                type='checkbox' 
+                checked={organic} 
+                onChange={chg} 
+                />
+                <span>Organic</span>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input 
+                  name='biodynamic' 
+                  type='checkbox' 
+                  checked={biodynamic} 
+                  onChange={chg} 
+                />
+                <span>Biodynamic</span>
+              </label>
+            </p>
+          </div>
           <input type='submit'
             disabled={!hasImg}
           />
@@ -114,3 +132,4 @@ export default class NewWineForm extends React.PureComponent {
     )
   }
 }
+
