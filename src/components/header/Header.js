@@ -73,9 +73,9 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
       <div className='header'>
       
       <NavLink className='logo-container' to="/">
-        <Logo />
-        <span className='logo'>bottlerocket</span>
-      </NavLink>
+      <span className='logo-text'>bottlerocket</span>
+        <Logo className='logo'/>
+        </NavLink>
       <div className='nav-options'>
         <NavLink 
           className='option' 
