@@ -5,8 +5,6 @@ import { Button } from '@material-ui/core'
 import './wines-panel.styles.scss'
 import { DirectUpload } from '@rails/activestorage'
 import api from '../../services/api'
-const API_ROOT = 'https://ancient-thicket-66765.herokuapp.com'
-// const API_ROOT = 'http://localhost:3000'
 
 export class WinesPanel extends PureComponent {
   state = {
@@ -16,7 +14,7 @@ export class WinesPanel extends PureComponent {
   }
 
   directUpload = (file) => {
-    const upload = new DirectUpload(file, `${API_ROOT}/images/direct_upload`)
+    const upload = new DirectUpload(file, `${api.API_ROOT}/images/direct_upload`)
     upload.create((this.directUploadComplete))
   }
   
