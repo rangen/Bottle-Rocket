@@ -1,9 +1,12 @@
 import React, { PureComponent } from 'react'
 import NewWineForm from '../../components/new-wine-form/NewWineForm'
 import Wine from '../../components/wine/Wine'
+import { Button } from '@material-ui/core'
+import './wines-panel.styles.scss'
 import { DirectUpload } from '@rails/activestorage'
 import api from '../../services/api'
-const API_ROOT = 'https://ancient-thicket-66765.herokuapp.com'
+// const API_ROOT = 'https://ancient-thicket-66765.herokuapp.com'
+const API_ROOT = 'http://localhost:3000'
 
 export class WinesPanel extends PureComponent {
   state = {
@@ -18,6 +21,7 @@ export class WinesPanel extends PureComponent {
   }
   
   directUploadComplete = (error, response) =>{
+    console.log(response)
     this.setState({
       hasImageAttached: (!error && !!response.key),
       image: response.key || null
@@ -99,15 +103,19 @@ export class WinesPanel extends PureComponent {
         return (
           <>
             <div>
-              <button onClick={()=>this.setMode('add')} >Add New Wine</button>
+              <Button color='primary' variant="contained" onClick={()=>this.setMode('add')} >Add New Wine</Button>
             </div>
-            {this.props.wines.map(wine => <Wine 
+            <div className='row'>
+            {this.props.wines.map(wine => (
+              <div className='col s12 m3'>
+              <Wine 
                                               key={wine.id}
                                               wine={wine}
                                               wineID={wine.id} 
                                               deleteWine={this.deleteWine} 
                                             />
-                                    )}
+                                    </div>))}
+                                    </div>
           </>
         )
     }

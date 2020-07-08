@@ -97,12 +97,17 @@ export class OffersPanel extends Component {
             <div>
               <button onClick={()=>this.setMode('create')} >Create New Offer</button>
             </div>
-            {this.props.offers.map(offer => <Offer 
+            <div className='row'>
+            {this.props.offers.map(offer => (
+              <div className='col s12 m3'>
+              <Offer 
                                               key={offer.id} 
                                               offerID={offer.id} 
                                               deleteOffer={this.deleteOffer} 
                                               broadcastOffer={this.broadcastOffer}
-                                              offer={offer.attributes} />)}
+                                              offer={offer.attributes} />
+                                              </div>))}
+                                              </div>
           </>
         )
     }

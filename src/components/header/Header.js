@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { ReactComponent as Logo } from '../../assets/logo/rocket-svgrepo-com.svg'
 import './header.styles.scss'
 
 const Header = ({ isAdmin, loggedIn, firstName }) => {
@@ -8,7 +9,9 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
             // **Admin Nav Bar **
             return (
               <div className='header'>
-                {`Welcome ${firstName}(Admin)!`}
+                <NavLink className='logo-container' to="/">
+                <span className='logo'>bottlerocket</span>
+                </NavLink>
                 <div className='nav-options'>
                   <NavLink 
                     className='option' 
@@ -37,9 +40,9 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
       <div className='nav-options'>
         
         <NavLink 
-          className='option' 
+          className='logo-container'
           to='/'>
-        Home
+          <span className='logo'>bottlerocket</span>
         </NavLink>
         
         <NavLink 
@@ -68,14 +71,12 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
    // ** Not Logged In Bar **
     return (
       <div className='header'>
-      <div className='nav-options'>
-
-        <NavLink 
-          className='option' 
-          to='/' >
-        LARGE BOTTLEROCKET LOGO HERE THAT TAKES NOT LOGGED IN BACK TO SPLASH SCREEN
+      
+      <NavLink className='logo-container' to="/">
+      <span className='logo-text'>bottlerocket</span>
+        <Logo className='logo'/>
         </NavLink>
-
+      <div className='nav-options'>
         <NavLink 
           className='option' 
           to='/signup' >

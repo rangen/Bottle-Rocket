@@ -1,0 +1,16 @@
+
+.card {
+  width: 300px;
+  height: 324px;
+  .test {
+    .card-action {
+      display: flex;
+      justify-content: space-evenly;
+      height: 80px;
+      .button {
+        font-size: 10px;
+        height: 30px;
+      }
+    }
+  }
+}
