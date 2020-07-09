@@ -5,7 +5,7 @@ import StripeForm from '../stripe-form/StripeForm'
 import './sign-up-form.styles.scss'
 import Input from '../input/input'
 import states from '../../states'
-const stripePromise = loadStripe('pk_test_51H21vEL37GrW3rTgFD9IYQ3uTzcm66S8GU6ee4khfRinCXNOicIaazI6l0sLxXlwMSdPTvd3Q0aiPTe09XOLE4Gl00snYcwan7')
+// const stripePromise = loadStripe('pk_test_51H21vEL37GrW3rTgFD9IYQ3uTzcm66S8GU6ee4khfRinCXNOicIaazI6l0sLxXlwMSdPTvd3Q0aiPTe09XOLE4Gl00snYcwan7')
 
 
 export default class SignUpForm extends PureComponent {
