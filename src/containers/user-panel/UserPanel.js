@@ -24,6 +24,12 @@ class UserPanel extends Component {
     )
   }
 
+  afterUpdate = (profile) => {
+    this.setState({
+      profile: profile
+    })
+  }
+
   getNewData = () => {
     const { dataFetchInProgress, dataNeedsUpdate } = this.state
 
@@ -35,7 +41,7 @@ class UserPanel extends Component {
                 .then(res => res.json())            //check for random fucking errors when time
                 .then(json => {
                   this.setState({ 
-                    profile: json.user.data.attributes,
+                    profile: json.profile.data.attributes,
                     trans: json.transactions.data,
                     dataFetchInProgress: false,
                     dataNeedsUpdate: false
@@ -46,13 +52,13 @@ class UserPanel extends Component {
   }
 
   render() {
-    const { afterLogout } = this.props
+    const { afterLogout, afterDestroy } = this.props
 
     return (
       <Switch>
             <Route exact path='/signout' render={() =>(<SignOut afterLogout={afterLogout} />)} />
             {/* <Route path='/transactions' render={() => (<WinesPanel wines={this.state.wines} updateData={this.dataNeedsUpdate} />)} /> */}
-            <Route path='/profile' render={() => (<ProfilePanel profile={this.state.profile} afterDestroy={this.props.afterDestroy} updateData={this.dataNeedsUpdate} />)} />
+            <Route path='/profile' render={() => (<ProfilePanel profile={this.state.profile} afterUpdate={this.afterUpdate} afterDestroy={afterDestroy} updateData={this.dataNeedsUpdate} />)} />
       </Switch>
     )
   }

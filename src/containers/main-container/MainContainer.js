@@ -16,7 +16,6 @@ class MainContainer extends React.Component  {
         //Admin is logged in
         return (
         <>
-        <h3>{`Welcome ${firstName}(Admin)!`}</h3>
           <AdminPanel afterLogout={afterLogout} />
         </>
         )
@@ -24,7 +23,6 @@ class MainContainer extends React.Component  {
         // SubscribedUser is logged in
         return (
           <>
-          <h3>{`Welcome ${firstName}(User)`}</h3>
             <UserPanel afterLogout={afterLogout} afterDestroy={afterDestroy} />
           </>
         )
