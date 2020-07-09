@@ -40,7 +40,7 @@ export default class NewOfferForm extends React.PureComponent {
     const disabled = !this.state.wineSelected
 
     return (
-      <div className='group' >
+      <div className='' >
         <h1>Create New Offer</h1>
         <form onSubmit={(e)=>newOffer(e, this.state)} >
           

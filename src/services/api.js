@@ -49,6 +49,9 @@ const updateProfile = (config) => {
     return fetch(`${API_ROOT}/user/profile`, config)
 }
 
+const submitSetupIntent = (config) => {
+    return fetch('api/setup_intents', config)
+}
 const getUserData = () => {
     return fetch(`${API_ROOT}/user/data`, {credentials: 'include'})
 }
@@ -70,7 +73,8 @@ export default {
         deleteOffer:    deleteOffer
             },
     app:    {
-        signUp:         signUp
+        signUp:         signUp,
+        setupIntent:    submitSetupIntent
             },
     user:   {
         show:           getProfile,

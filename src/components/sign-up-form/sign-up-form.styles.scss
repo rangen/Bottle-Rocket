@@ -1,8 +1,21 @@
-.group {
+$sub-color: #f7eaeb;
+$main-color: #1cab9c;
 
-  .buttons {
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-evenly;
-    }
+.sign-up-container{
+  position: relative;
+  width: 600px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 0 auto;
+}
+.buttons {
+  .btn {
+    margin: 5px;
+  }
+}
+
+.error {
+  color: red;
+  
 }

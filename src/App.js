@@ -3,7 +3,7 @@ import Header from './containers/header/Header'
 import MainContainer from './containers/main-container/MainContainer'
 import Footer from './containers/footer/Footer'
 import { withRouter } from 'react-router-dom'
-import './App.css';
+import './App.scss';
 import api from './services/api'
 
 class App extends React.PureComponent {
