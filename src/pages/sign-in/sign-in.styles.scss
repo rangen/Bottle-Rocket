@@ -1,3 +1,21 @@
-.title {
-  margin: 20px 0;
+$sub-color: #f7eaeb;
+$main-color: #1cab9c;
+
+.sign-in-container{
+  position: relative;
+  width: 600px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 0 auto;
+}
+.buttons {
+  .btn {
+    margin: 5px;
+  }
+}
+
+.error {
+  color: red;
+  
 }

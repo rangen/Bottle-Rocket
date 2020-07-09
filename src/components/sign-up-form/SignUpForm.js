@@ -36,37 +36,40 @@ export default class SignUpForm extends PureComponent {
             {/* More elegant solution for this soon */}
             <div className='row'>
               <div className='col s12'>
-              {Object.entries(this.props.errors).map(err=><h4 className='error'>{`Error: ${err[0]} ${err[1][0]}!`}</h4>)}
-              <Input type='text' name='firstName' value={this.state.firstName} label='First Name:' handleChange={this.inputChanged} />
-              <Input type='text' name='lastName' value={this.state.lastName} label='Last Name:' handleChange={this.inputChanged} />
-              <Input type='text' name='email' value={this.state.email} label='Email:' handleChange={this.inputChanged} />
-              <Input type='text' name='mobileNumber' value={this.state.mobileNumber} label='Phone Number:'  handleChange={this.inputChanged} />
-              <Input type='password' name='password' value={this.state.password} label='Password:' handleChange={this.inputChanged} />
-              <Input type='text' name='shippingAddress1' value={this.state.shippingAddress1} label='Address:' handleChange={this.inputChanged} />
-              <Input type='text' name='shippingAddress2' value={this.state.shippingAddress2} label='Apt / Other (revise this text):' handleChange={this.inputChanged} />
-              <Input type='text' name='city' value={this.state.city} label='City:' handleChange={this.inputChanged} />
-              <Input type='number' name='zipcode' value={this.state.zipcode} label='ZIP Code:'  handleChange={this.inputChanged} />
-              <select className="browser-default col s5 right" name='state' onChange={(e)=>this.inputChanged(e)} value={this.state.state}>
-              {Object.entries(states).map(([abb, name])=>
-                (<option key={abb} value={abb}>{name}</option>)
-                )}
-                </select>
-                <br></br>
-                <Elements stripe={stripePromise}>
-                {({stripe, elements}) => (
-                  <StripeForm  stripe={stripe} elements={elements} />
-                  )}
-                  </Elements>
-                  </div>
-              </div>
-                <div className='buttons'>
-                  <button className='btn red lighten-3'>Cancel</button>
-                  <button className="btn waves-effect waves-light" type="submit" name="action">Submit
-                    <i className="material-icons right">send</i>
-                </button> 
+                {Object.entries(this.props.errors).map(err=><h4 className='error'>{`Error: ${err[0]} ${err[1][0]}!`}</h4>)}
+                <Input type='text' autoFocus icon='phone_android' classOverRide='input-field col s5 offset-s1' name='mobileNumber' value={this.state.mobileNumber} label='Mobile Number'  handleChange={this.inputChanged} />
+                <Input type='text' name='email' classOverRide='input-field col s5' value={this.state.email} label='Email' handleChange={this.inputChanged} />
+                <Input type='text' icon='person' name='firstName' classOverRide='input-field col s5 offset-s1' value={this.state.firstName} label='First Name' handleChange={this.inputChanged} />
+                <Input type='text' name='lastName' classOverRide='input-field col s5' value={this.state.lastName} label='Last Name' handleChange={this.inputChanged} />
+                <Input type='text' icon='local_shipping' name='shippingAddress1' classOverRide='input-field col s10 offset-s1' value={this.state.shippingAddress1} label='Delivery Address' handleChange={this.inputChanged} />
+                <Input type='text' name='shippingAddress2' classOverRide='input-field col s9 offset-s2' value={this.state.shippingAddress2} label='Apartment / Unit / Other' handleChange={this.inputChanged} />
+                <Input type='text' name='city' classOverRide='input-field col s4 offset-s2' value={this.state.city} label='City' handleChange={this.inputChanged} />
+                <div className="input-field col s2">
+                  <select className='browser-default' name='state' onChange={(e)=>this.inputChanged(e)} value={this.state.state}>
+                      {Object.entries(states).map(([abb, name])=>
+                        (<option key={abb} value={abb}>{abb}</option>)
+                        )}
+                  </select>
                 </div>
-        </form>
+                <Input type='text' name='zipcode' classOverRide='input-field col s3' value={this.state.zipcode} label='ZIP'  handleChange={this.inputChanged} />
+                        <Input type='password' icon='enhanced_encryption' name='password' classOverRide='input-field col s5 offset-s1' value={this.state.password} label='Password' handleChange={this.inputChanged} />
+                        <Input type='password' name='cPassword' classOverRide='input-field col s5' value={this.state.password} label='Confirm Password' handleChange={this.inputChanged} />
+                  <br></br>
+                  <Elements stripe={stripePromise}>
+                  {({stripe, elements}) => (
+                    <StripeForm  stripe={stripe} elements={elements} />
+                    )}
+                    </Elements>
+              </div>
             </div>
+            <div className='buttons'>
+              <button className='btn red lighten-3'>Cancel</button>
+              <button className="btn waves-effect waves-light" type="submit" name="action">Sign Up
+                <i className="material-icons right">send</i>
+            </button> 
+          </div>
+        </form>
+      </div>
             )
           }
         }

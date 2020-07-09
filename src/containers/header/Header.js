@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { ReactComponent as Logo } from '../../assets/logo/rocket-svgrepo-com.svg'
 import './header.styles.scss'
 
-const Header = ({ isAdmin, loggedIn, firstName }) => {
+const Header = ({ isAdmin, loggedIn, firstName, email }) => {
   if (loggedIn) {
     if (isAdmin) {
             // **Admin Nav Bar **
@@ -33,7 +33,7 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
                 to='/signout'>
                 Sign Out
                 </NavLink>
-                <p className='user'>Welcome Back,<br></br>{`${firstName}`}</p>
+                <p className='user'>{email}</p>
                 </div>
               </div>
             )  // **END Admin Nav Bar **
@@ -69,7 +69,7 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
           to='/signout' >
         Logout
         </NavLink>
-        <p className='user'>Welcome Back,<br></br>{`${firstName}`}</p>
+        <p className='user'>{email}</p>
       </div>
     </div>
       )   // END User Nav Bar **
@@ -88,15 +88,16 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
           activeStyle={{ 'background-color': '#008E7E' }}
           className='option' 
           to='/signup' >
-        Sign Up
+        Subscribe to BottleRocket
         </NavLink>
-        
+        {/* icon here maybe! */}
         <NavLink
           activeStyle={{ 'background-color': '#008E7E' }}  
           className='option' 
           to='/signin' >
-        Log In
+        Login
         </NavLink>
+        <p className='user'>bottles <i>rocketed</i></p>
       </div>
     </div>
     )
