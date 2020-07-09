@@ -70,6 +70,13 @@ class App extends React.PureComponent {
     this.logout(true)
   }
 
+  afterUpdate = (first, email) => {
+    this.setState({
+      firstName: first,
+      email: email
+    })
+  }
+
   render() {
     return (
       <div>
@@ -85,6 +92,7 @@ class App extends React.PureComponent {
           isAdmin={this.state.isAdmin}
           clearLoginError={this.clearLoginErrors}
           afterLogin={this.afterLogin}
+          afterUpdate={this.afterUpdate}
           afterLogout={this.afterLogout}
           afterDestroy={this.afterDestroy}
           firstName={this.state.firstName}

@@ -40,7 +40,7 @@ export default class NewOfferForm extends React.PureComponent {
     const disabled = !this.state.wineSelected
 
     return (
-      <div className='' >
+      <div className='container new-offer-form'>
         <h1>Create New Offer</h1>
         <form onSubmit={(e)=>newOffer(e, this.state)} >
           
@@ -52,8 +52,8 @@ export default class NewOfferForm extends React.PureComponent {
             />
           </label> */}
 
-
-          <select 
+          <div className='form-inputs'>
+          <select
               className="browser-default"
               name='wineID'
               onChange={this.handleChange}
@@ -70,9 +70,11 @@ export default class NewOfferForm extends React.PureComponent {
               )}      
           </select>
 
-
+          <div className='row offer-fields'>
+          <div className='col s3 text-center'>
           <label htmlFor='numOffered'>Number to Offer</label>
-          <input name='numOffered' 
+          <input name='numOffered'
+              className='input-field text-center'
               onChange={this.handleChange} 
               min='1' 
               type='number'
@@ -80,8 +82,9 @@ export default class NewOfferForm extends React.PureComponent {
               max={this.state.maxForThisWine}
               disabled={disabled}
           />
+          </div>
 
-          <div>
+          <div className='col s9 text-center'>
             <label htmlFor='offer-time'>Choose a Date/Time to SMS this Offer:</label>
 
             <input type='datetime-local' 
@@ -92,18 +95,23 @@ export default class NewOfferForm extends React.PureComponent {
                 onChange={this.handleChange}
             />
           </div>
+          </div>
           
-          <div>
-            <button type='button'
+          <div className='buttons'>
+            <button
+              className='btn red lighten-3'
+              type='button'
               onClick={()=>setMode('view')} >
             Cancel
             </button>
             
             <button
+              className='btn waves-effect waves-light'
               disabled={disabled}
               type='submit'>
             Save New Offer
             </button>
+          </div>
           </div>
         </form>
       </div>

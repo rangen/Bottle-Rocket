@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import NewWineForm from '../../components/new-wine-form/NewWineForm'
 import Wine from '../../components/wine/Wine'
-import { Button } from '@material-ui/core'
 import './wines-panel.styles.scss'
 import { DirectUpload } from '@rails/activestorage'
 import api from '../../services/api'
@@ -101,20 +100,23 @@ export class WinesPanel extends PureComponent {
       default:            //default is view
         return (
           <>
-            <div>
-              <Button color='primary' variant="contained" onClick={()=>this.setMode('add')} >Add New Wine</Button>
+            <div className='row' />
+            <div className='row' />
+            <div className='buttons'>
+              <button className="btn waves-effect waves-light" onClick={()=>this.setMode('add')} >Add New Wine</button>
             </div>
+            <div className='row' />
             <div className='row'>
-            {this.props.wines.map(wine => (
-              <div className='col s12 m3'>
-              <Wine 
-                                              key={wine.id}
-                                              wine={wine}
-                                              wineID={wine.id} 
-                                              deleteWine={this.deleteWine} 
-                                            />
-                                    </div>))}
-                                    </div>
+              {this.props.wines.map(wine => (
+                <div className='col s6 m4 l3'>
+                  <Wine 
+                    key={wine.id}
+                    wine={wine}
+                    wineID={wine.id} 
+                    deleteWine={this.deleteWine} 
+                  />
+                </div>))}
+            </div>
           </>
         )
     }

@@ -37,14 +37,28 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div className='group'>
-        <h1 className='title'>Sign In</h1>
-          <form onSubmit={this.login} >
-            {this.props.error ? <h3>{this.props.error}</h3> : null}
-                <Input type='email'name='email' value={this.state.email} handleChange={this.inputChanged} label={'Email'} />
-                <Input type='password' value={this.state.password} name={'password'} handleChange={this.inputChanged} label={'Password'} />
-                <input type='submit' />
-          </form>
+      <div className='sign-in-container'>
+        <form onSubmit={this.login} >
+          {this.props.error ? <h3>{this.props.error}</h3> : null}
+          <div className='row' />
+          <div className='row' />
+          <div className='row' />
+          <div className='row' />
+          <div className='row' />
+          <div className='row'>
+              <Input classOverRide='input-field col s4 offset-s4' icon='email' autoFocus type='email' name='email' value={this.state.email} handleChange={this.inputChanged} label={'Email'} />
+              <Input classOverRide='input-field col s4 offset-s4' icon='enhanced_encryption' type='password' value={this.state.password} name={'password'} handleChange={this.inputChanged} label={'Password'} />
+          </div>
+                
+          <div className='row buttons'>
+            <button class = "btn waves-effect waves-light red lighten-3" type = "submit">Not Thirsty
+              <i class = "material-icons right">cancel</i>
+            </button>
+            <button class = "btn waves-effect waves-light" type = "submit" >Login
+              <i class = "material-icons right">login</i>
+            </button>
+          </div>
+        </form>
       </div>
     )
   }
