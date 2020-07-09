@@ -25,7 +25,7 @@ export default class NewOfferForm extends React.PureComponent {
       }
       if (ele.name === 'wineID') {
         newState.wineSelected = true      //otherwise enable rest of form
-        newState.maxForThisWine = this.props.wines.find(wine=>wine.id === +ele.value).attributes.inventory
+        newState.maxForThisWine = this.props.wines.find(wine=>wine.id === ele.value).attributes.inventory
         if (newState.maxForThisWine < this.state.numOffered) {
           newState.numOffered = newState.maxForThisWine
         }

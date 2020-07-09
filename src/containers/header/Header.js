@@ -10,8 +10,10 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
             return (
               <div className='header'>
                 <NavLink className='logo-container' to="/">
-                <span className='logo'>bottlerocket</span>
+                  <span className='logo-text'>bottlerocket</span>
+                  <Logo className='logo'/>
                 </NavLink>
+                
                 <div className='nav-options'>
                   <NavLink 
                     className='option' 
@@ -36,24 +38,23 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
       // ** User Nav Bar **
       return (
       <div className='header'>
-      {`Welcome ${firstName}(User)!`}
+      
+      <NavLink className='logo-container' to="/">
+        <span className='logo-text'>bottlerocket</span>
+          <Logo className='logo'/>
+      </NavLink>
+
       <div className='nav-options'>
-        
-        <NavLink 
-          className='logo-container'
-          to='/'>
-          <span className='logo'>bottlerocket</span>
-        </NavLink>
         
         <NavLink 
           className='option' 
           to='/user/transactions'>
-        Purchase History
+        Purchases
         </NavLink>
 
         <NavLink 
           className='option' 
-          to='/user/profile'>
+          to='/profile'>
         Profile
         </NavLink>
 
@@ -61,7 +62,7 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
         <NavLink 
           className='option' 
           to='/signout' >
-        Sign Out
+        Logout
         </NavLink>
       </div>
     </div>
