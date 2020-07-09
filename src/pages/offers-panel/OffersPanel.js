@@ -94,20 +94,25 @@ export class OffersPanel extends Component {
       default:            //default is view
         return (
           <>
+            <div className='row' />
+            <div className='row' />
+            <div className='row' />
             <div>
               <button className="btn waves-effect waves-light" onClick={()=>this.setMode('create')} >Setup New BottleRocket Offer</button>
             </div>
+            <div className='row' />
+            <div className='row' />
             <div className='row'>
-            {this.props.offers.map(offer => (
-              <div className='col s6 m4 l3'>
-              <Offer 
-                key={offer.id} 
-                offerID={offer.id} 
-                deleteOffer={this.deleteOffer} 
-                broadcastOffer={this.broadcastOffer}
-                offer={offer.attributes} />
-                </div>))}
-                </div>
+              {this.props.offers.map(offer => (
+                <div className='col s6 m4 l3'>
+                <Offer 
+                  key={offer.id} 
+                  offerID={offer.id} 
+                  deleteOffer={this.deleteOffer} 
+                  broadcastOffer={this.broadcastOffer}
+                  offer={offer.attributes} />
+                  </div>))}
+            </div>
           </>
         )
     }

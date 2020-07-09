@@ -100,6 +100,10 @@ export class WinesPanel extends PureComponent {
       default:            //default is view
         return (
           <>
+            <div className='row' />
+            <div className='row' />
+            <div className='row' />
+            <div className='row' />
             <div className='buttons'>
               <button className="btn waves-effect waves-light" onClick={()=>this.setMode('add')} >Add New Wine</button>
             </div>
