@@ -39,11 +39,10 @@ export default class SignUpForm extends PureComponent {
                 {Object.entries(this.props.errors).map(err=><h4 className='error'>{`Error: ${err[0]} ${err[1][0]}!`}</h4>)}
                 <Input type='text' autoFocus icon='phone_android' classOverRide='input-field col s5 offset-s1' name='mobileNumber' value={this.state.mobileNumber} label='Mobile Number'  handleChange={this.inputChanged} />
                 <Input type='text' name='email' classOverRide='input-field col s5' value={this.state.email} label='Email' handleChange={this.inputChanged} />
-                <Input type='text' icon='person' name='firstName' classOverRide='input-field col s5 offset-s1' value={this.state.firstName} label='First Name' handleChange={this.inputChanged} />
+                <Input type='text' name='firstName' classOverRide='input-field col s4 offset-s2' value={this.state.firstName} label='First Name' handleChange={this.inputChanged} />
                 <Input type='text' name='lastName' classOverRide='input-field col s5' value={this.state.lastName} label='Last Name' handleChange={this.inputChanged} />
-                <Input type='password' name='password' classOverRide='input-field col s7 offset-s2' value={this.state.password} label='Password' handleChange={this.inputChanged} />
-                <Input type='text' icon='local_shipping' name='shippingAddress1' classOverRide='input-field col s8 offset-s1' value={this.state.shippingAddress1} label='Address' handleChange={this.inputChanged} />
-                <Input type='text' name='shippingAddress2' classOverRide='input-field col s7 offset-s2' value={this.state.shippingAddress2} label='Apartment / Unit / Other' handleChange={this.inputChanged} />
+                <Input type='text' icon='local_shipping' name='shippingAddress1' classOverRide='input-field col s10 offset-s1' value={this.state.shippingAddress1} label='Delivery Address' handleChange={this.inputChanged} />
+                <Input type='text' name='shippingAddress2' classOverRide='input-field col s9 offset-s2' value={this.state.shippingAddress2} label='Apartment / Unit / Other' handleChange={this.inputChanged} />
                 <Input type='text' name='city' classOverRide='input-field col s4 offset-s2' value={this.state.city} label='City' handleChange={this.inputChanged} />
                 <div className="input-field col s2">
                   <select className='browser-default' name='state' onChange={(e)=>this.inputChanged(e)} value={this.state.state}>
@@ -52,7 +51,9 @@ export default class SignUpForm extends PureComponent {
                         )}
                   </select>
                 </div>
-                <Input type='text' name='zipcode' classOverRide='input-field col s2' value={this.state.zipcode} label='ZIP'  handleChange={this.inputChanged} />
+                <Input type='text' name='zipcode' classOverRide='input-field col s3' value={this.state.zipcode} label='ZIP'  handleChange={this.inputChanged} />
+                        <Input type='password' icon='enhanced_encryption' name='password' classOverRide='input-field col s5 offset-s1' value={this.state.password} label='Password' handleChange={this.inputChanged} />
+                        <Input type='password' name='cPassword' classOverRide='input-field col s5' value={this.state.password} label='Confirm Password' handleChange={this.inputChanged} />
                   <br></br>
                   <Elements stripe={stripePromise}>
                   {({stripe, elements}) => (

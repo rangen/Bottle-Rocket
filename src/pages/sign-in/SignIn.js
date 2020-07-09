@@ -51,8 +51,8 @@ class SignIn extends Component {
           <div className='row'>
           </div>
           <div className='row'>
-              <Input classOverRide='input-field col s4 offset-s4' autoFocus type='email' name='email' value={this.state.email} handleChange={this.inputChanged} label={'Email'} />
-              <Input classOverRide='input-field col s4 offset-s4' type='password' value={this.state.password} name={'password'} handleChange={this.inputChanged} label={'Password'} />
+              <Input classOverRide='input-field col s4 offset-s4' icon='email' autoFocus type='email' name='email' value={this.state.email} handleChange={this.inputChanged} label={'Email'} />
+              <Input classOverRide='input-field col s4 offset-s4' icon='enhanced_encryption' type='password' value={this.state.password} name={'password'} handleChange={this.inputChanged} label={'Password'} />
           </div>
                 
           <div className='row buttons'>
