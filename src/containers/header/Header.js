@@ -88,16 +88,16 @@ const Header = ({ isAdmin, loggedIn, firstName, email }) => {
           activeStyle={{ 'background-color': '#008E7E' }}
           className='option' 
           to='/signup' >
-        Sign Up
+        Subscribe to BottleRocket
         </NavLink>
-        
+        {/* icon here maybe! */}
         <NavLink
           activeStyle={{ 'background-color': '#008E7E' }}  
           className='option' 
           to='/signin' >
-        Log In
+        Login
         </NavLink>
-        <p className='user'>Bottles <i>Rocketed</i></p>
+        <p className='user'>bottles <i>rocketed</i></p>
       </div>
     </div>
     )
