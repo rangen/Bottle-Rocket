@@ -33,7 +33,18 @@ class SignUp extends PureComponent {
                   newState.errors = json.errors || []
       })
       .then(()=>this.setState(newState))
-  }
+
+
+    api.app.setupIntent({
+      method: "POST",
+      body: data,
+      credentials: 'include',
+      headers: {
+        "accept": "application/json",
+        "Content-Type": "application/json"
+    }
+  })
+}
 
   render() {
     if (this.state.success) {

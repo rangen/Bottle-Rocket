@@ -9,16 +9,18 @@ const ProfileForm = ({ firstName, lastName, email, mobileNumber, shippingAddress
   return (
     <div className='group'>
       <form onSubmit={(event) => handleEditSubmit(event)}>
-        <Input 
+        <Input
+          className='active'
+          type='text'
           name='firstName' 
           value={firstName}
           label={'First Name'}
           chg={handleInputChange} 
         />
-        <Input 
+        <Input
+        type='text'
           name='lastName' 
           value={lastName}
-          label={'Last Name'} 
           chg={handleInputChange} 
         />
         <Input 

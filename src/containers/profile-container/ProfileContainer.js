@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ProfileForm from '../../pages/profile/ProfileForm'
-import './profile-container.styles.scss'
 import api from '../../services/api'
 
 export class ProfileContainer extends Component {

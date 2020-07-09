@@ -1,10 +1,13 @@
 import React , { PureComponent} from 'react'
+import { Elements } from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
 import './sign-up-form.styles.scss'
-import { Grid, Select, MenuItem, Button } from '@material-ui/core'
-// import CustomButton from '../custom-button/CustomButton'
+import StripeForm from '../stripe-form/StripeForm'
 import Input from '../input/input'
-
 import states from '../../states'
+const stripePromise = loadStripe('pk_test_51H21vEL37GrW3rTgFD9IYQ3uTzcm66S8GU6ee4khfRinCXNOicIaazI6l0sLxXlwMSdPTvd3Q0aiPTe09XOLE4Gl00snYcwan7')
+
+// import CustomButton from '../custom-button/CustomButton'
 
 export default class SignUpForm extends PureComponent {
   state = {
@@ -17,7 +20,8 @@ export default class SignUpForm extends PureComponent {
     shippingAddress2: '',
     city: '',
     zipcode: '',
-    state: "CA"
+    state: "CA",
+    isProcessing: false
   }
 
   inputChanged = (event) => {
@@ -46,6 +50,12 @@ export default class SignUpForm extends PureComponent {
                   (<option key={abb} value={abb}>{name}</option>)
                   )}
                   </select>
+              <br></br>
+                <Elements stripe={stripePromise}>
+                {({stripe, elements}) => (
+                  <StripeForm  stripe={stripe} elements={elements} />
+                )}
+                </Elements>
                 {Object.entries(this.props.errors).map(err=><h3>{`${err[0]} => ${err[1][0]}`}</h3>)}
                 <div className='buttons'>
                 <button className='btn red'>Cancel</button>
@@ -59,14 +69,4 @@ export default class SignUpForm extends PureComponent {
           }
         }
         
-        
-        // <TextField variant="outlined" className='form-input' name='firstName' value={this.state.firstName} label='First Name:' chg={(e) => this.inputChanged(e)} type='text' />
-        // <TextField className='form-input' name='lastName' value={this.state.lastName} label='Last Name:' chg={this.inputChanged} />
-        // <TextField className='form-input' name='email' value={this.state.email} label='Email:' inputType='email' chg={this.inputChanged} />
-        // <TextField className='form-input' name='password' value={this.state.password} label='Password (consider alternate method):' inputType='password' chg={this.inputChanged} />
-        // <TextField className='form-input' name='mobileNumber' value={this.state.mobileNumber} label='Cell Phone:' inputType='tel' chg={this.inputChanged} />
-        // <TextField className='form-input' name='shippingAddress1' value={this.state.shippingAddress1} label='Address:' chg={this.inputChanged} />
-        // <TextField className='form-input' name='shippingAddress2' value={this.state.shippingAddress2} label='Apt / Other (revise this text):' chg={this.inputChanged} />
-        // <TextField className='form-input' name='city' value={this.state.city} label='City:' chg={this.inputChanged} />
-        // <TextField className='form-input' name='zipcode' value={this.state.zipcode} label='ZIP Code:' inputType='number' chg={this.inputChanged} />
         

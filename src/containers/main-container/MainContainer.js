@@ -5,8 +5,8 @@ import SignUp from '../../pages/sign-up/SignUp'
 import HomePage from '../../pages/homepage/HomePage'
 import AdminPanel from '../../components/admin-panel/AdminPanel'
 import ProfileContainer from '../profile-container/ProfileContainer'
+// import StripeButton from '../../components/stripe-button/StripeButton'
 import { Route, Switch } from 'react-router-dom'
-
 class MainContainer extends React.Component  {
   
   render() {
@@ -37,6 +37,8 @@ class MainContainer extends React.Component  {
       // No One is Logged In
       return (
           <>(need splash screen for app  i.e. HOW BOTTLEROCKET WORKS)
+          <div className='group'>
+          </div>
           <Switch>
             <Route exact path='/signin' render={() =>(<SignIn error={loginError} clearError={clearLoginError} afterLogin={afterLogin} />)} />
             <Route exact path='/signup' component={SignUp} />
