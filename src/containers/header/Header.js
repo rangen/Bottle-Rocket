@@ -53,7 +53,7 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
 
         <NavLink 
           className='option' 
-          to='/user/profile'>
+          to='/profile'>
         Profile
         </NavLink>
 

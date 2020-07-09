@@ -1,5 +1,5 @@
 import React from 'react'
-import AdminPanel from '../../components/admin-panel/AdminPanel'
+import AdminPanel from '../../containers/admin-panel/AdminPanel'
 import About from '../../components/about/About'
 
 const HomePage = ({ isAdmin }) => {

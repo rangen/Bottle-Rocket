@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './components/header/Header'
+import Header from './containers/header/Header'
 import MainContainer from './containers/main-container/MainContainer'
-import Footer from './components/footer/Footer'
+import Footer from './containers/footer/Footer'
 import { withRouter } from 'react-router-dom'
 import './App.css';
 import api from './services/api'
@@ -37,14 +37,14 @@ class App extends React.PureComponent {
     })
   }
 
-  logout = () => {
+  logout = (accountDestroyed=false) => {
     this.setState({
       loggedIn: false,
       isAdmin: false,
       email: null,
       firstName: null,
       logsOutAt: null,
-      loginError: 'Your session timed out. Please login.'
+      loginError: accountDestroyed ? 'Thanks for using BottleRocket!' : 'Your session timed out. Please login.'
     }, () => this.props.history.push('/signin'))
   }
 
@@ -67,12 +67,7 @@ class App extends React.PureComponent {
   }
 
   afterDestroy = () => {
-    this.setState({
-      loggedIn: false,
-      isAdmin: false,
-      email: null,
-      firstName: null
-    })
+    this.logout(true)
   }
 
   render() {

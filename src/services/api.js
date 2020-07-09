@@ -49,6 +49,10 @@ const updateProfile = (config) => {
     return fetch(`${API_ROOT}/user/profile`, config)
 }
 
+const getUserData = () => {
+    return fetch(`${API_ROOT}/user/data`, {credentials: 'include'})
+}
+
 
 
 export default {
@@ -71,6 +75,7 @@ export default {
     user:   {
         show:           getProfile,
         destroy:        deleteProfile,
-        update:         updateProfile
+        update:         updateProfile,
+        getData:        getUserData
     }
 };
