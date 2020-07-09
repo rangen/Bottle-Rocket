@@ -1,6 +1,5 @@
 import React from 'react'
 import './offer.styles.scss'
-import { Button } from '@material-ui/core'
 
 const Offer = ({ offer, deleteOffer, offerID, broadcastOffer }) => {
   return (
@@ -10,8 +9,9 @@ const Offer = ({ offer, deleteOffer, offerID, broadcastOffer }) => {
       <div className='test'>
         <h6>Offer{offer.isActiveOffer ? " Active" : " Inactive"}
           <div className='card-action'>
-          <Button className='button' color='primary' variant="contained" onClick={()=>broadcastOffer(offerID)} >Broadcast Offer</Button>
-          <Button className='button' color='secondary' variant="contained" onClick={(e)=>deleteOffer(e, offerID)} >Delete Offer</Button>
+            {/* Might refactor logic to "cancel" an offer that hasn't been sent out or disable if already has! */}
+          <button className="btn waves-effect waves-light red lighten-2" onClick={(e)=>deleteOffer(e, offerID)} >Delete Offer</button>
+          <button className="btn waves-effect waves-light" onClick={()=>broadcastOffer(offerID)} >Broadcast Offer</button>
           {/* Rocket icon in button !! */}
           </div>
         </h6>

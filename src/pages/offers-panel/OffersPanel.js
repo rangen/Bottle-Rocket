@@ -95,19 +95,19 @@ export class OffersPanel extends Component {
         return (
           <>
             <div>
-              <button onClick={()=>this.setMode('create')} >Create New Offer</button>
+              <button className="btn waves-effect waves-light" onClick={()=>this.setMode('create')} >Setup New BottleRocket Offer</button>
             </div>
             <div className='row'>
             {this.props.offers.map(offer => (
-              <div className='col s12 m3'>
+              <div className='col s6 m4 l3'>
               <Offer 
-                                              key={offer.id} 
-                                              offerID={offer.id} 
-                                              deleteOffer={this.deleteOffer} 
-                                              broadcastOffer={this.broadcastOffer}
-                                              offer={offer.attributes} />
-                                              </div>))}
-                                              </div>
+                key={offer.id} 
+                offerID={offer.id} 
+                deleteOffer={this.deleteOffer} 
+                broadcastOffer={this.broadcastOffer}
+                offer={offer.attributes} />
+                </div>))}
+                </div>
           </>
         )
     }

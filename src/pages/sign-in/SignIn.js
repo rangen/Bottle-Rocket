@@ -40,16 +40,11 @@ class SignIn extends Component {
       <div className='sign-in-container'>
         <form onSubmit={this.login} >
           {this.props.error ? <h3>{this.props.error}</h3> : null}
-          <div className='row'>
-          </div>
-          <div className='row'>
-          </div>
-          <div className='row'>
-          </div>
-          <div className='row'>
-          </div>
-          <div className='row'>
-          </div>
+          <div className='row' />
+          <div className='row' />
+          <div className='row' />
+          <div className='row' />
+          <div className='row' />
           <div className='row'>
               <Input classOverRide='input-field col s4 offset-s4' icon='email' autoFocus type='email' name='email' value={this.state.email} handleChange={this.inputChanged} label={'Email'} />
               <Input classOverRide='input-field col s4 offset-s4' icon='enhanced_encryption' type='password' value={this.state.password} name={'password'} handleChange={this.inputChanged} label={'Password'} />
