@@ -27,7 +27,7 @@ class UserPanel extends Component {
   afterUpdate = (profile) => {
     this.setState({
       profile: profile
-    })
+    }, this.props.afterUpdate(profile.firstName, profile.email))
   }
 
   getNewData = () => {

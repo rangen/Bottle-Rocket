@@ -9,7 +9,7 @@ import { Route, Switch } from 'react-router-dom'
 class MainContainer extends React.Component  {
   
   render() {
-    const { loggedIn, isAdmin, afterLogin, afterLogout, afterDestroy, loginError, clearLoginError, firstName } = this.props
+    const { loggedIn, isAdmin, afterLogin, afterLogout, afterDestroy, afterUpdate, loginError, clearLoginError, firstName } = this.props
     if (loggedIn) {
       if (isAdmin) {
         //Admin is logged in
@@ -22,7 +22,7 @@ class MainContainer extends React.Component  {
         // SubscribedUser is logged in
         return (
           <>
-            <UserPanel afterLogout={afterLogout} afterDestroy={afterDestroy} />
+            <UserPanel afterLogout={afterLogout} afterUpdate={afterUpdate} afterDestroy={afterDestroy} />
           </>
         )
       }

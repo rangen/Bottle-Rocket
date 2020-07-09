@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { ReactComponent as Logo } from '../../assets/logo/rocket-svgrepo-com.svg'
 import './header.styles.scss'
 
-const Header = ({ isAdmin, loggedIn, firstName }) => {
+const Header = ({ isAdmin, loggedIn, firstName, email }) => {
   if (loggedIn) {
     if (isAdmin) {
             // **Admin Nav Bar **
@@ -33,7 +33,7 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
                 to='/signout'>
                 Sign Out
                 </NavLink>
-                <p className='user'>Welcome Back,<br></br>{`${firstName}`}</p>
+                <p className='user'>{email}</p>
                 </div>
               </div>
             )  // **END Admin Nav Bar **
@@ -69,7 +69,7 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
           to='/signout' >
         Logout
         </NavLink>
-        <p className='user'>Welcome Back,<br></br>{`${firstName}`}</p>
+        <p className='user'>{email}</p>
       </div>
     </div>
       )   // END User Nav Bar **
@@ -97,6 +97,7 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
           to='/signin' >
         Log In
         </NavLink>
+        <p className='user'>Bottles <i>Rocketed</i></p>
       </div>
     </div>
     )
