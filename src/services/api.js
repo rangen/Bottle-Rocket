@@ -1,5 +1,5 @@
 const API_ROOT = `http://localhost:3000`;
-// const API_ROOT = 'http://ancient-thicket-66765.herokuapp.com'
+// const API_ROOT = 'https://ancient-thicket-66765.herokuapp.com'
 
 const getAdminData = () => {
     return fetch(`${API_ROOT}/admin/data`, {credentials: 'include'})
@@ -52,6 +52,9 @@ const updateProfile = (config) => {
 const submitSetupIntent = (config) => {
     return fetch('api/setup_intents', config)
 }
+const getUserData = () => {
+    return fetch(`${API_ROOT}/user/data`, {credentials: 'include'})
+}
 
 
 
@@ -76,6 +79,7 @@ export default {
     user:   {
         show:           getProfile,
         destroy:        deleteProfile,
-        update:         updateProfile
+        update:         updateProfile,
+        getData:        getUserData
     }
 };

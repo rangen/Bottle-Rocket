@@ -10,25 +10,30 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
             return (
               <div className='header'>
                 <NavLink className='logo-container' to="/">
-                <span className='logo'>bottlerocket</span>
+                  <span className='logo-text'>bottlerocket</span>
+                  <Logo className='logo'/>
                 </NavLink>
+                
                 <div className='nav-options'>
-                  <NavLink 
-                    className='option' 
-                    to='/wines'>
-                  Wines
-                  </NavLink>
-                  <NavLink 
-                    className='option' 
-                    to='/offers'>
-                  Offers
-                  </NavLink>
-
-                  <NavLink 
-                    className='option' 
-                    to='/signout'>
-                  Sign Out
-                  </NavLink>
+                <NavLink 
+                activeStyle={{ 'background-color': '#008E7E' }}
+                className='option' 
+                to='/wines'>
+                Wines
+                </NavLink>
+                <NavLink 
+                className='option' 
+                activeStyle={{ 'background-color': '#008E7E' }} 
+                to='/offers'>
+                Offers
+                </NavLink>
+                
+                <NavLink 
+                className='option'
+                to='/signout'>
+                Sign Out
+                </NavLink>
+                <p className='user'>Welcome Back,<br></br>{`${firstName}`}</p>
                 </div>
               </div>
             )  // **END Admin Nav Bar **
@@ -36,24 +41,25 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
       // ** User Nav Bar **
       return (
       <div className='header'>
-      {`Welcome ${firstName}(User)!`}
+      
+      <NavLink className='logo-container' to="/">
+        <span className='logo-text'>bottlerocket</span>
+          <Logo className='logo'/>
+      </NavLink>
+
       <div className='nav-options'>
         
         <NavLink 
-          className='logo-container'
-          to='/'>
-          <span className='logo'>bottlerocket</span>
-        </NavLink>
-        
-        <NavLink 
+          activeStyle={{ 'background-color': '#008E7E' }}
           className='option' 
           to='/user/transactions'>
-        Purchase History
+        Purchases
         </NavLink>
 
         <NavLink 
+          activeStyle={{ 'background-color': '#008E7E' }}
           className='option' 
-          to='/user/profile'>
+          to='/profile'>
         Profile
         </NavLink>
 
@@ -61,8 +67,9 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
         <NavLink 
           className='option' 
           to='/signout' >
-        Sign Out
+        Logout
         </NavLink>
+        <p className='user'>Welcome Back,<br></br>{`${firstName}`}</p>
       </div>
     </div>
       )   // END User Nav Bar **
@@ -78,12 +85,14 @@ const Header = ({ isAdmin, loggedIn, firstName }) => {
         </NavLink>
       <div className='nav-options'>
         <NavLink 
+          activeStyle={{ 'background-color': '#008E7E' }}
           className='option' 
           to='/signup' >
         Sign Up
         </NavLink>
         
-        <NavLink 
+        <NavLink
+          activeStyle={{ 'background-color': '#008E7E' }}  
           className='option' 
           to='/signin' >
         Log In

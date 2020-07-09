@@ -1,8 +1,7 @@
 import React from 'react';
 import './new-wine-form.styles.scss';
 import Input from '../input/input';
-// import * as ActiveStorage from '@rails/activestorage'
-// ActiveStorage.start()
+
 
 export default class NewWineForm extends React.PureComponent {
   
@@ -67,25 +66,29 @@ export default class NewWineForm extends React.PureComponent {
 
           <Input 
             type='text'
-            name="fullName" 
+            name="fullName"
+            value={fullName} 
             handleChange={chg} 
             label='Wine Name (full)' 
           />
           <Input 
             type='text'
             name='price'
+            value={price}
             handleChange={chg} 
             label='Price:'
           />
           <Input
             type='text'  
-            name='inventory' 
+            name='inventory'
+            value={inventory} 
             handleChange={chg} 
             label='Inventory:'
           />
           <Input 
             type='text'
-            name='color' 
+            name='color'
+            value={color} 
             handleChange={chg} 
             label='Color:'
           />

@@ -1,6 +1,6 @@
 [
     {
-      "origin": ["http://localhost:3001"],
+      "origin": ["https://fastgrapejuice.com", "http://localhost:3001"],
       "method": ["PUT"],
       "responseHeader": ["Origin", "Content-Type", "Content-MD5", "Content-Disposition"],
       "maxAgeSeconds": 3600

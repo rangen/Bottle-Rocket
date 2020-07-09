@@ -1,6 +1,6 @@
 import React from 'react'
 import './subscribed-users-container.styles.scss'
-import SubscribedUser from '../../components/subscribed-user/SubscribedUser'
+// import SubscribedUser from '../../components/subscribed-user/SubscribedUser'
 
 const SubscribedUsersContainer = ({ users }) => {
     return (

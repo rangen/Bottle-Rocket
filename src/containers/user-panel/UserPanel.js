@@ -1,18 +1,14 @@
 import React, { Component } from 'react'
-import Analytics from '../analytics/Analytics'
-import './admin-panel.styles.scss'
-import SubscribedUsers from '../../containers/subscribed-users-container/SubscribedUsersContainer'
+import './user-panel.styles.scss'
 import { Route, Switch } from 'react-router-dom'
 import SignOut from '../../pages/sign-out/SignOut'
-import WinesPanel from '../../pages/wines-panel/WinesPanel'
-import OffersPanel from '../../pages/offers-panel/OffersPanel'
+import ProfilePanel from '../../containers/profile-panel/ProfilePanel'
 import api from '../../services/api'
 
-class AdminPanel extends Component {
+class UserPanel extends Component {
   state = {
-    users: [],
-    offers: [],
-    wines: [],
+    profile: {},
+    trans: [],
     dataFetchInProgress: false,
     dataNeedsUpdate: true
   }
@@ -28,6 +24,12 @@ class AdminPanel extends Component {
     )
   }
 
+  afterUpdate = (profile) => {
+    this.setState({
+      profile: profile
+    })
+  }
+
   getNewData = () => {
     const { dataFetchInProgress, dataNeedsUpdate } = this.state
 
@@ -35,13 +37,12 @@ class AdminPanel extends Component {
       this.setState({
         dataFetchInProgress: true
       }, () => {
-              api.admin.getData()
-                .then(res => res.json())
+              api.user.getData()
+                .then(res => res.json())            //check for random fucking errors when time
                 .then(json => {
                   this.setState({ 
-                    offers: json.offers.data,
-                    wines: json.wines.data,
-                    users: json.users.data,
+                    profile: json.profile.data.attributes,
+                    trans: json.transactions.data,
                     dataFetchInProgress: false,
                     dataNeedsUpdate: false
                     })
@@ -51,17 +52,16 @@ class AdminPanel extends Component {
   }
 
   render() {
-    const { afterLogout } = this.props
+    const { afterLogout, afterDestroy } = this.props
 
     return (
       <Switch>
             <Route exact path='/signout' render={() =>(<SignOut afterLogout={afterLogout} />)} />
-            <Route path='/wines' render={() => (<WinesPanel wines={this.state.wines} updateData={this.dataNeedsUpdate} />)} />
-            <Route path='/offers' render={() => (<OffersPanel wines={this.state.wines} offers={this.state.offers} updateData={this.dataNeedsUpdate} />)} />
-            {/* <Route path='/subscribedusers' component={OffersPanel} /> */}
+            {/* <Route path='/transactions' render={() => (<WinesPanel wines={this.state.wines} updateData={this.dataNeedsUpdate} />)} /> */}
+            <Route path='/profile' render={() => (<ProfilePanel profile={this.state.profile} afterUpdate={this.afterUpdate} afterDestroy={afterDestroy} updateData={this.dataNeedsUpdate} />)} />
       </Switch>
     )
   }
 }
 
-export default AdminPanel
+export default UserPanel
