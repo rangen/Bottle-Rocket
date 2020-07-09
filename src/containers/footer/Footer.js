@@ -4,7 +4,7 @@ import './footer.styles.scss'
 const Footer = () => {
   return (
     <div className='footer'>
-      FOOTER
+      2020 BottleRocket
     </div>
   )
 }
