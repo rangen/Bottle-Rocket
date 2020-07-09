@@ -59,112 +59,134 @@ export class ProfilePanel extends PureComponent {
       formDirty:        true
     })  
   }
-
+  
   revert = () => {
     console.log('cancelled')
     //hook back to UserPanel default screen somehow
   }
-
+  
   render() {
     const { firstName, lastName, email, mobileNumber, city, zipcode, state, shippingAddress1, shippingAddress2 } = this.props.profile
     const uIP = this.state.updateInProgress
-
+    
     return (
-      <div className='group'>
+      <div className='profile-container'>
         <form onSubmit={(e) => this.handleEditSubmit(e)}>
-          <Input 
-            name='firstName' 
-            defaultValue={firstName}
-            label={'First Name'}
-            type='text'
-            prefilled
-            disabled={uIP}
-            handleChange={this.handleChange} 
-          />
-          <Input 
-            name='lastName' 
-            defaultValue={lastName}
-            label={'Last Name'}
-            type='text'
-            prefilled
-            disabled={uIP} 
-            handleChange={this.handleChange} 
-          />
-          <Input 
-            name='email' 
-            defaultValue={email}
-            label={'Email'} 
-            type='email'
-            prefilled
-            disabled={uIP} 
-            handleChange={this.handleChange} 
-          />
-          <Input 
-            name='mobileNumber' 
-            defaultValue={mobileNumber}
-            label={'Mobile Number for SMS'} 
-            type='tel'
-            prefilled
-            disabled={uIP} 
-            handleChange={this.handleChange} 
-          />
-          <Input 
-            name='shippingAddress1' 
-            defaultValue={shippingAddress1}
-            type='text'
-            prefilled            
-            disabled={uIP}
-            label={'Delivery Address'} 
-            handleChange={this.handleChange}
-            />
-          <Input 
-            name='shippingAddress2' 
-            defaultValue={shippingAddress2}
-            type='text'
-            prefilled
-            disabled={uIP}
-            label={'Apt / Unit / Other (revise!)'}
-            handleChange={this.handleChange} 
-          />
-          <Input 
-            name='city' 
-            defaultValue={city}
-            type='text'
-            prefilled
-            disabled={uIP}
-            label={'City'} 
-            handleChange={this.handleChange} 
-          />
-          <Input 
-            name='zipcode' 
-            defaultValue={zipcode}
-            type='text'
-            prefilled
-            disabled={uIP}
-            label={'ZIP'} 
-            handleChange={this.handleChange} 
-          />
-
-            <select
-              className='browser-default' 
-              name='state'
-              disabled={uIP} 
-              onChange={this.handleChange}
-              value={this.state.state || state}  
-            >
-            {Object.entries(states).map(([abb, name]) => (<option key={abb} value={abb}>{name}</option>))}
-            </select>
-          <button disabled={!this.state.formDirty} type='submit'>{this.state.formDirty ? 'Update Profile' : 'Profile Saved'}</button>
-          <button 
-            disabled={uIP}
-            onClick={this.revert}>
-          Cancel
-          </button>
-          <button
-            disabled={uIP}
-            onClick={this.handleDelete}>
-          Delete Account
-          </button>
+          <div className='row'>
+            <div className='col s12'>
+              <Input 
+                name='mobileNumber' 
+                defaultValue={mobileNumber}
+                label={'Mobile Number for SMS'} 
+                type='tel'
+                autoFocus
+                classOverRide='input-field col s6'
+                icon='phone_android'
+                prefilled
+                disabled={uIP} 
+                handleChange={this.handleChange} 
+              />
+              <Input 
+                name='email' 
+                defaultValue={email}
+                label={'Email'} 
+                type='email'
+                classOverRide='input-field col s6'
+                prefilled
+                disabled={uIP} 
+                handleChange={this.handleChange} 
+              />
+              <Input 
+                name='firstName' 
+                defaultValue={firstName}
+                label={'First Name'}
+                type='text'
+                icon='person'
+                prefilled
+                disabled={uIP}
+                handleChange={this.handleChange} 
+              />
+              <Input 
+                name='lastName' 
+                defaultValue={lastName}
+                label={'Last Name'}
+                type='text'
+                prefilled
+                disabled={uIP} 
+                handleChange={this.handleChange} 
+              />
+              <Input 
+                name='shippingAddress1' 
+                defaultValue={shippingAddress1}
+                type='text'
+                prefilled            
+                disabled={uIP}
+                icon='local_shipping'
+                label={'Delivery Address'} 
+                handleChange={this.handleChange}
+                />
+              <Input 
+                name='shippingAddress2' 
+                defaultValue={shippingAddress2}
+                type='text'
+                prefilled
+                disabled={uIP}
+                label={'Apartment / Unit / Other'}
+                handleChange={this.handleChange} 
+              />
+              <Input 
+                name='city' 
+                defaultValue={city}
+                type='text'
+                prefilled
+                disabled={uIP}
+                classOverRide='input-field col s4 offset-s1'
+                label={'City'} 
+                handleChange={this.handleChange} 
+              />
+              <div className='input-field col s2'>
+                <select
+                  className='browser-default' 
+                  name='state'
+                  disabled={uIP} 
+                  onChange={this.handleChange}
+                  value={this.state.state || state}  
+                >
+                {Object.entries(states).map(([abb, name]) => (<option key={abb} value={abb}>{abb}</option>))}
+                </select>
+              </div>
+              <Input 
+                name='zipcode' 
+                defaultValue={zipcode}
+                type='text'
+                prefilled
+                classOverRide='input-field col s3'
+                disabled={uIP}
+                label={'ZIP'} 
+                handleChange={this.handleChange} 
+              />
+              <div className='buttons'>
+                <button 
+                  disabled={uIP}
+                  className="btn waves-effect waves-light lighten-2"
+                  onClick={this.revert}>
+                Cancel
+                </button>
+                <button 
+                  disabled={!this.state.formDirty}
+                  className="btn waves-effect waves-light" 
+                  type='submit'>
+                    {this.state.formDirty ? 'Update Profile' : 'Profile Saved'}
+                  </button>
+                <button
+                className='btn red lighten-1'
+                  disabled={uIP}
+                  onClick={this.handleDelete}>
+                Delete Account
+                </button>
+              </div>
+            </div>
+          </div>
         </form>
       </div>
     )
