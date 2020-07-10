@@ -1,16 +1,21 @@
-.new-offer-form {
+$sub-color: #f7eaeb;
+$main-color: #1cab9c;
+
+.new-offer-container{
+  position: relative;
   width: 600px;
   border: 1px solid black;
   border-radius: 5px;
-  padding-bottom: 60px;
-  .form-inputs {
-    padding-left: 80px;
-    padding-right: 80px;
-
-    .offer-fields {
-      padding-top: 40px;
-      padding-bottom: 40px;
-    }
-
+  padding: 20px;
+  margin: 0 auto;
+}
+.buttons {
+  .btn {
+    margin: 5px;
   }
+}
+
+.error {
+  color: red;
+  
 }

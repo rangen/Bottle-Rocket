@@ -6,7 +6,7 @@ const SubscribedUsersPanel = ({ users }) => {
     
   return (
       <div>
-          <table className='striped'>
+          <table className='highlight'>
         <thead>
           <tr>
               <th>Mobile Number</th>

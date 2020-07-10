@@ -40,19 +40,11 @@ export default class NewOfferForm extends React.PureComponent {
     const disabled = !this.state.wineSelected
 
     return (
-      <div className='container new-offer-form'>
+      <div className='new-offer-container'>
         <h1>Create New Offer</h1>
         <form onSubmit={(e)=>newOffer(e, this.state)} >
-          
-          {/* <label htmlFor='allSubscribers'>Send to All My Subscribers
-            <input name='allSubscribers'
-              id='allSubscribers' type='checkbox' 
-              onChange={this.handleChange}
-              checked={this.state.allSubscribers}
-            />
-          </label> */}
 
-          <div className='form-inputs'>
+          <div className='row'>
           <select
               className="browser-default"
               name='wineID'
@@ -61,7 +53,6 @@ export default class NewOfferForm extends React.PureComponent {
           >
             <option value='choose'
              label="Choose a Wine for this Offer" />
-
             {wines.map(wine=>
               <option key={wine.id}
                     value={wine.id}>
@@ -95,6 +86,10 @@ export default class NewOfferForm extends React.PureComponent {
                 onChange={this.handleChange}
             />
           </div>
+          <div class="input-field col s6">
+              <textarea name='smsText' onChange={this.handleChange} id="textarea1" class="materialize-textarea"></textarea>
+                <label for="textarea1">Text Content of SMS Offer</label>
+           </div>
           </div>
           
           <div className='buttons'>
