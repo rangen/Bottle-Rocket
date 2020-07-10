@@ -10,7 +10,7 @@ class SignOut extends Component {
   componentDidMount() {
     this.blinker = setInterval(this.animateMsg, 250)
     console.log('Logging out in 10 seconds...')
-    setTimeout(this.logout, 28000)
+    setTimeout(this.logout, 2100)
   }
 
   animateMsg = () => {

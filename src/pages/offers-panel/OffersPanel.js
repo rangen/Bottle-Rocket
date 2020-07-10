@@ -14,16 +14,13 @@ class OffersPanel extends Component {
   submitNewOffer = (event, values) => {
     event.preventDefault();
 
-    const pickValues = (...keys) => obj => keys.reduce((a, e) => ({...a, [e]: obj[e] }), {})
-    const formData = pickValues('wineID', 'offerDateTime', 'numOffered')(values)
+    const formData = new FormData(event.target)
+    formData.append('offerDateTime', new Date(values.offerDateTime).toGMTString())
+
     const config = {
             method: 'POST',
-            headers: {
-              'accept': 'application/json',
-              'content-type': 'application/json'
-            },
             credentials: 'include',
-            body: JSON.stringify(formData)
+            body: formData
     }
     api.admin.newOffer(config)
       .then(resp=>this.processNewOffer(resp))
@@ -65,14 +62,6 @@ class OffersPanel extends Component {
       event.target.disabled = false
       //Other error display about offer not successfully deleted here
     }
-  }
-
-  broadcastOffer = (offerID) => {
-    console.log(`Going to view to broadcast Offer via BottleRocket SMS for offer ${offerID}!`)
-    this.setState({
-      mode: 'broadcast',
-      selectedOffer: offerID
-    })
   }
 
   render() {
