@@ -22,7 +22,7 @@ const About = () => {
               <i className="large material-icons">phone_iphone</i>
             </div>
             <div className='card-content about-text'>
-              <p>We'll send you a text every day with an exclusive offer. Reply with the offer code as well as the number of bottles you would like to recieve, as well as scheduled delivery time.</p>
+              <p>We'll send you a text every day with an exclusive offer. Reply with the offer code as well as the number of bottles you would like to recieve</p>
             </div>
           </div>
           <div className='card col s4'>
@@ -33,7 +33,7 @@ const About = () => {
               <i className="large material-icons">airport_shuttle</i>
             </div>
             <div className='card-content about-text'>
-              <p>We'll send you back a message confirming your order. Our drivers will drop off to your door at the scheduled time.(Please have ID ready)</p>
+              <p>We'll send you back a message confirming your order. Our drivers will drop off to your door at the scheduled time</p>
             </div>
           </div>
           <div className='card col s4'>
