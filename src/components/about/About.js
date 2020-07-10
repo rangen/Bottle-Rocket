@@ -8,7 +8,7 @@ const About = () => {
     <div>
       <div className='text-container'>
         <span>Welcome to, </span>
-          <span className='comp-name'>bottlerocket </span>
+          <span className='company-name'>bottlerocket </span>
         <span>where you can get great quality wines delivered to your door with just the push of a button. We work with wine establishments in your area and provide exclusive offers just for our members.</span>
       </div>
       <h3>How it works:</h3>

@@ -4,10 +4,11 @@ import Offer from '../../components/offer/Offer'
 import api from '../../services/api'
 import './offers-panel.styles.scss'
 
-export class OffersPanel extends Component {
+class OffersPanel extends Component {
   state = {
     selectedOffer: null,
-    mode: 'view'  // view broadcast create
+    mode: 'view',  // view broadcast create
+    
   }
 
   submitNewOffer = (event, values) => {

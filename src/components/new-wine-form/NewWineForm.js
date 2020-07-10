@@ -41,7 +41,7 @@ export default class NewWineForm extends React.PureComponent {
   
 
   render() {
-    const { newWine, hasImg } = this.props
+    const { newWine, hasImg, setMode } = this.props
     const { fullName, preview, price, inventory, color, natural, organic, biodynamic } = this.state
     const chg = this.handleChange
 
@@ -138,7 +138,7 @@ export default class NewWineForm extends React.PureComponent {
           <div className='buttons'>
           <button
               className='btn red lighten-3'
-              // onClick={()=>setMode('view')} 
+              onClick={()=>setMode('view')} 
               >
             Cancel
             </button>

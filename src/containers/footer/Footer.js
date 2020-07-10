@@ -11,7 +11,12 @@ const Footer = () => {
         <p>2020 BottleRocket</p>
       </div>
       <div className='icons'>
+        Don Mallory:
         <a href='https://github.com/rangen'target="_blank">
+          <GitHub className='footer-icon'/>
+        </a>
+        Sean Dever:
+        <a href='https://github.com/Seanbon0611'target="_blank">
           <GitHub className='footer-icon'/>
         </a>
         <a href='https://www.linkedin.com/in/sean-dever-3a03b29a/' target='_blank'>

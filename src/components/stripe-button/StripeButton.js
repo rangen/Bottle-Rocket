@@ -11,11 +11,11 @@ const StripeButton = ({ price }) => {
   return (
     <div>
       <StripeCheckout 
-        label='Register with Stripe'
+        label='Add Credit Card'
         name='bottlerocket'
         billingaddress
         shippingaddress
-        description={`Your total is $${price}`}
+        description='Securely stored with Stripe'
         amount={priceForStripe}
         panelLabel='Register'
         token={onToken}
