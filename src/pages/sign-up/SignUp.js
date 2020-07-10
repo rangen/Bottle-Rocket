@@ -13,32 +13,32 @@ class SignUp extends PureComponent {
     const newState = {};
     e.preventDefault();
     
-    // const data = JSON.stringify(formContents);
+    const data = JSON.stringify(formContents);
     
-    // const config = {
-    //               method: "POST",
-    //               body: data,
-    //               credentials: 'include',
-    //               headers: {
-    //                 "accept": "application/json",
-    //                 "Content-Type": "application/json",
-    //               }
-    //             }
+    const config = {
+                  method: "POST",
+                  body: data,
+                  credentials: 'include',
+                  headers: {
+                    "accept": "application/json",
+                    "Content-Type": "application/json",
+                  }
+                }
 
 
-    // api.app.signUp(config)
-    //   .then(resp=> {
-    //               newState.success = resp.status === 200
-    //               return resp.json()
-    //           })
-    //   .then(json=>{
-    //               newState.errors = json.errors || []
-    //   })
-    //   .then(()=>this.setState(newState))
+    api.app.signUp(config)
+      .then(resp=> {
+                  newState.success = resp.status === 200
+                  return resp.json()
+              })
+      .then(json=>{
+                  newState.errors = json.errors || []
+      })
+      .then(()=>this.setState(newState))
 
-    api.app.setupIntent()
-    .then(res => res.json())
-    .then(data => console.log(data))
+    // api.app.setupIntent()
+    // .then(res => res.json())
+    // .then(data => console.log(data))
 
 }
 

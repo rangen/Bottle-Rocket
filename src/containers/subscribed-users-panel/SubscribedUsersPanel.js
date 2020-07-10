@@ -5,7 +5,7 @@ import './subscribed-users-panel.styles.scss'
 const SubscribedUsersPanel = ({ users }) => {
     
   return (
-      <div>
+      <div className='container'>
           <table className='striped'>
         <thead>
           <tr>
@@ -14,7 +14,8 @@ const SubscribedUsersPanel = ({ users }) => {
               <th>Name</th>
               <th>Sign Up Date</th>
           </tr>
-        </thead>
+          </thead>
+
 
         <tbody>
           {users.map(user=>(

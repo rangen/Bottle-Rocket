@@ -55,7 +55,9 @@ class AdminPanel extends Component {
 
     return (
       <>
-      <div onClick={this.dataNeedsUpdate}>UPDATE ADMIN DATA ROCKET LOGO ANCHORED TO THE LEFT</div>
+      <div onClick={this.dataNeedsUpdate}className='refresh-container'>
+        <i className='material-icons refresh'>autorenew</i>
+      </div>
       <Switch>
             <Route exact path='/signout' render={() =>(<SignOut afterLogout={afterLogout} />)} />
             <Route path='/wines' render={() => (<WinesPanel wines={this.state.wines} updateData={this.dataNeedsUpdate} />)} />
