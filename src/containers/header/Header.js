@@ -21,11 +21,19 @@ const Header = ({ isAdmin, loggedIn, firstName, email }) => {
                 to='/wines'>
                 Wines
                 </NavLink>
+
                 <NavLink 
                 className='option' 
                 activeStyle={{ 'background-color': '#008E7E' }} 
                 to='/offers'>
                 Offers
+                </NavLink>
+                
+                <NavLink 
+                className='option' 
+                activeStyle={{ 'background-color': '#008E7E' }} 
+                to='/subscribedusers'>
+                Subscribers
                 </NavLink>
                 
                 <NavLink 
@@ -97,6 +105,7 @@ const Header = ({ isAdmin, loggedIn, firstName, email }) => {
           to='/signin' >
         Login
         </NavLink>
+        
         <p className='user'>bottles <i>rocketed</i></p>
       </div>
     </div>
