@@ -53,16 +53,6 @@ export default class NewWineForm extends React.PureComponent {
           onSubmit={(e) => newWine(e, this.state.image)}
           encType='multipart/form-data'
         >
-          <input 
-            type='file'
-            name='image'
-            accept='image/*'
-            onChange={this.handlePreviewImage}
-          />
-          <img 
-            src={preview} alt="" 
-            style={{width: '20%', height: "20%"}} 
-          />
 
           <Input 
             type='text'
@@ -126,10 +116,40 @@ export default class NewWineForm extends React.PureComponent {
                 <span>Biodynamic</span>
               </label>
             </p>
+            
           </div>
-          <input type='submit'
+          <div class="file-field input-field file-form">
+            <div class="btn">
+              <span>Choose File</span>
+              <input 
+                type='file'
+                name='image'
+                accept='image/*'
+                onChange={this.handlePreviewImage}
+              />
+            </div>
+            <div class="file-path-wrapper">
+              <img 
+                src={preview} alt="" 
+                style={{width: '30%', height: "30%"}} 
+              />
+            </div>
+          </div>
+          <div className='buttons'>
+          <button
+              className='btn red lighten-3'
+              // onClick={()=>setMode('view')} 
+              >
+            Cancel
+            </button>
+          <button 
+            className='btn waves-effect waves-light' 
+            type='submit'
             disabled={!hasImg}
-          />
+          >Submit
+            <i className="material-icons right">send</i>
+          </button>
+          </div>
         </form>
       </div>
     )

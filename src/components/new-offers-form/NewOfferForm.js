@@ -100,7 +100,6 @@ export default class NewOfferForm extends React.PureComponent {
           <div className='buttons'>
             <button
               className='btn red lighten-3'
-              type='button'
               onClick={()=>setMode('view')} >
             Cancel
             </button>

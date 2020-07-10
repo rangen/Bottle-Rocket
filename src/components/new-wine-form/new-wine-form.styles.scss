@@ -1,7 +1,14 @@
 .group {
     position: relative;
-    width: 380px;
+    width: 500px;
     margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    form {
+      padding-left: 25px;
+      padding-right: 25px;
+      padding-bottom: 30px;
+    }
   
     .form-input {
       font-size: 18px;
@@ -13,4 +20,8 @@
       display: flex;
       justify-content: space-evenly;
     }
+  }
+
+  .file-form {
+    padding-bottom: 40px;
   }
