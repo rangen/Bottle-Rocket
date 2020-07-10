@@ -49,8 +49,8 @@ const updateProfile = (config) => {
     return fetch(`${API_ROOT}/user/profile`, config)
 }
 
-const submitSetupIntent = (config) => {
-    return fetch('api/setup_intents', config)
+const submitSetupIntent = () => {
+    return fetch('/add-payment-method', {credentials: 'include'})
 }
 const getUserData = () => {
     return fetch(`${API_ROOT}/user/data`, {credentials: 'include'})

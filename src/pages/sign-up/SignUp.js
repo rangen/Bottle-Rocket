@@ -25,6 +25,7 @@ class SignUp extends PureComponent {
                   }
                 }
 
+
     api.app.signUp(config)
       .then(resp=> {
                   newState.success = resp.status === 200
@@ -35,7 +36,10 @@ class SignUp extends PureComponent {
       })
       .then(()=>this.setState(newState))
 
-      
+    // api.app.setupIntent()
+    // .then(res => res.json())
+    // .then(data => console.log(data))
+
 }
 
   render() {

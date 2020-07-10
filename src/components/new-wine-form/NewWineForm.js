@@ -53,6 +53,23 @@ export default class NewWineForm extends React.PureComponent {
           onSubmit={(e) => newWine(e, this.state.image)}
           encType='multipart/form-data'
         >
+        <div class="file-field input-field file-form">
+        <div class="btn">
+          <span>Choose File</span>
+          <input 
+            type='file'
+            name='image'
+            accept='image/*'
+            onChange={this.handlePreviewImage}
+          />
+        </div>
+        <div class="file-path-wrapper">
+          <img 
+            src={preview} alt="" 
+            style={{width: '30%', height: "30%"}} 
+          />
+        </div>
+      </div>
 
           <Input 
             type='text'
@@ -118,23 +135,7 @@ export default class NewWineForm extends React.PureComponent {
             </p>
             
           </div>
-          <div class="file-field input-field file-form">
-            <div class="btn">
-              <span>Choose File</span>
-              <input 
-                type='file'
-                name='image'
-                accept='image/*'
-                onChange={this.handlePreviewImage}
-              />
-            </div>
-            <div class="file-path-wrapper">
-              <img 
-                src={preview} alt="" 
-                style={{width: '30%', height: "30%"}} 
-              />
-            </div>
-          </div>
+          
           <div className='buttons'>
           <button
               className='btn red lighten-3'
