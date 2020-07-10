@@ -2,11 +2,36 @@
   position: fixed;
   left: 0;
   bottom: 0;
-  height: 40px;
+  height: 50px;
   width: 100%;
   background-color:#f7eaeb;
   color: #940909;
   text-align: center;
   flex: 0 0 50px;
-  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  z-index: 100;
+
+  .icons {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 40px;
+    .footer-icon {
+      display: flex;
+      justify-content: flex-end;
+      width: 80%;
+      display: flex;
+    }
+  }
+}
+
+.comp-name {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }

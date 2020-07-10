@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NewOfferForm from '../../components/new-offers-form/NewOfferForm'
 import Offer from '../../components/offer/Offer'
 import api from '../../services/api'
+import './offers-panel.styles.scss'
 
 export class OffersPanel extends Component {
   state = {
@@ -94,14 +95,9 @@ export class OffersPanel extends Component {
       default:            //default is view
         return (
           <>
-            <div className='row' />
-            <div className='row' />
-            <div className='row' />
-            <div>
+            <div className='button-container'>
               <button className="btn waves-effect waves-light" onClick={()=>this.setMode('create')} >Setup New BottleRocket Offer</button>
             </div>
-            <div className='row' />
-            <div className='row' />
             <div className='row'>
               {this.props.offers.map(offer => (
                 <div className='col s6 m4 l3'>

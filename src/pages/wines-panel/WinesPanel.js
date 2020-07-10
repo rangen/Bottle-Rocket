@@ -100,14 +100,9 @@ export class WinesPanel extends PureComponent {
       default:            //default is view
         return (
           <>
-            <div className='row' />
-            <div className='row' />
-            <div className='row' />
-            <div className='row' />
-            <div className='buttons'>
+            <div className='button-container'>
               <button className="btn waves-effect waves-light" onClick={()=>this.setMode('add')} >Add New Wine</button>
             </div>
-            <div className='row' />
             <div className='row'>
               {this.props.wines.map(wine => (
                 <div className='col s6 m4 l3'>

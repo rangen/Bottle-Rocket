@@ -11,10 +11,10 @@
     justify-content: flex-start;
     align-items: center;
     height: 100%;
-    width: 100%;
+    width: 25%;
     padding: 15px;
     .logo {
-      width: 8%;
+      width: 20%;
     }
     .logo-text {
       font-family: 'Francois One', sans-serif;
@@ -33,10 +33,10 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    padding-right: 40px;
 
     .user {
       padding-left: 20px;
-      padding-right: 40px;
       color: white;
     }
         .usericon {
@@ -47,7 +47,6 @@
     .option {
       color: white;
       text-shadow: 1px 1px grey;
-      border-bottom: 1px solid #67cbc9;
       padding: 10px 15px;
       cursor: pointer;
 
