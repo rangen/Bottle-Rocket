@@ -1,19 +1,19 @@
 import React from 'react'
-import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
+import {CardElement} from '@stripe/react-stripe-js';
 
 
 const CARD_OPTIONS = {
   iconStyle: 'solid',
   style: {
     base: {
-      iconColor: '#c4f0ff',
+      iconColor: 'black',
       color: 'black',
       fontWeight: 500,
-      fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
+      padding: '50px',
       fontSize: '16px',
       fontSmoothing: 'antialiased',
       ':-webkit-autofill': {color: '#fce883'},
-      '::placeholder': {color: '#87bbfd'},
+      '::placeholder': {color: 'grey'},
     },
     invalid: {
       iconColor: 'red',
@@ -25,7 +25,6 @@ const CARD_OPTIONS = {
 
 
 const StripeForm = () => {
-  const stripe = useStripe();
   return (
     <div>
         <CardElement options={CARD_OPTIONS} />

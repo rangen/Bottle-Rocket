@@ -109,7 +109,8 @@ export default class NewOfferForm extends React.PureComponent {
               className='btn waves-effect waves-light'
               disabled={disabled}
               type='submit'>
-            Save New Offer
+            Save Offer
+            <i className="material-icons right">send</i>
             </button>
           </div>
           </div>

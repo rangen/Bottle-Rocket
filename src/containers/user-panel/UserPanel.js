@@ -3,6 +3,7 @@ import './user-panel.styles.scss'
 import { Route, Switch } from 'react-router-dom'
 import SignOut from '../../pages/sign-out/SignOut'
 import ProfilePanel from '../../containers/profile-panel/ProfilePanel'
+import About from '../../components/about/About'
 import api from '../../services/api'
 
 class UserPanel extends Component {
@@ -40,6 +41,7 @@ class UserPanel extends Component {
               api.user.getData()
                 .then(res => res.json())            //check for random fucking errors when time
                 .then(json => {
+                  console.log(json)
                   this.setState({ 
                     profile: json.profile.data.attributes,
                     trans: json.transactions.data,
@@ -55,11 +57,14 @@ class UserPanel extends Component {
     const { afterLogout, afterDestroy } = this.props
 
     return (
-      <Switch>
-            <Route exact path='/signout' render={() =>(<SignOut afterLogout={afterLogout} />)} />
-            {/* <Route path='/transactions' render={() => (<WinesPanel wines={this.state.wines} updateData={this.dataNeedsUpdate} />)} /> */}
-            <Route path='/profile' render={() => (<ProfilePanel profile={this.state.profile} afterUpdate={this.afterUpdate} afterDestroy={afterDestroy} updateData={this.dataNeedsUpdate} />)} />
-      </Switch>
+      <div>
+        <Switch>
+          <Route exact path='/' component={About} />
+          <Route exact path='/signout' render={() =>(<SignOut afterLogout={afterLogout} />)} />
+          {/* <Route path='/transactions' render={() => (<WinesPanel wines={this.state.wines} updateData={this.dataNeedsUpdate} />)} /> */}
+          <Route path='/profile' render={() => (<ProfilePanel profile={this.state.profile} afterUpdate={this.afterUpdate} afterDestroy={afterDestroy} updateData={this.dataNeedsUpdate} />)} />
+        </Switch>
+      </div>
     )
   }
 }
