@@ -1,4 +1,3 @@
-// const API_ROOT = `http://localhost:3000`;
 const API_ROOT = 'https://ancient-thicket-66765.herokuapp.com'
 
 const getAdminData = () => {
