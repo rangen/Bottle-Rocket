@@ -12,6 +12,7 @@ class SignUp extends PureComponent {
   submitNewUser = (e, formContents) => {
     const newState = {};
     e.preventDefault();
+    
     const data = JSON.stringify(formContents);
     
     const config = {
@@ -34,16 +35,7 @@ class SignUp extends PureComponent {
       })
       .then(()=>this.setState(newState))
 
-
-    api.app.setupIntent({
-      method: "POST",
-      body: data,
-      credentials: 'include',
-      headers: {
-        "accept": "application/json",
-        "Content-Type": "application/json"
-    }
-  })
+      
 }
 
   render() {

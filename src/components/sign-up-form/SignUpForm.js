@@ -1,11 +1,8 @@
 import React , { PureComponent} from 'react'
-import { Elements } from '@stripe/react-stripe-js'
-import { loadStripe } from '@stripe/stripe-js'
-import StripeForm from '../stripe-form/StripeForm'
+import StripeButton from '../../components/stripe-button/StripeButton'
 import './sign-up-form.styles.scss'
 import Input from '../input/input'
 import states from '../../states'
-const stripePromise = loadStripe('pk_test_51H21vEL37GrW3rTgFD9IYQ3uTzcm66S8GU6ee4khfRinCXNOicIaazI6l0sLxXlwMSdPTvd3Q0aiPTe09XOLE4Gl00snYcwan7')
 
 
 export default class SignUpForm extends PureComponent {
@@ -54,13 +51,9 @@ export default class SignUpForm extends PureComponent {
                   </select>
                 </div>
                 <Input type='text' name='zipcode' required classOverRide='input-field col s3' value={this.state.zipcode} label='ZIP'  handleChange={this.inputChanged} />
-                        <Input type='password' required icon='enhanced_encryption' name='password' classOverRide='input-field col s5 offset-s1' value={this.state.password} label='Password' handleChange={this.inputChanged} />
-                        <Input type='password' required name='confirmPassword' classOverRide='input-field col s5' value={this.state.confirmPassword} label='Confirm Password' handleChange={this.inputChanged} />
-                  <Elements stripe={stripePromise}>
-                  {({stripe, elements}) => (
-                    <StripeForm  stripe={stripe} elements={elements} />
-                    )}
-                    </Elements>
+                <Input type='password' required icon='enhanced_encryption' name='password' classOverRide='input-field col s5 offset-s1' value={this.state.password} label='Password' handleChange={this.inputChanged} />
+                <Input type='password' required name='confirmPassword' classOverRide='input-field col s5' value={this.state.confirmPassword} label='Confirm Password' handleChange={this.inputChanged} />
+                <StripeButton className='btn waves-effect waves-light'/>
               </div>
             </div>
             <div className='buttons'>

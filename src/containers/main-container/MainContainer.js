@@ -4,6 +4,7 @@ import SignOut from '../../pages/sign-out/SignOut'
 import SignUp from '../../pages/sign-up/SignUp'
 import UserPanel from '../user-panel/UserPanel'
 import AdminPanel from '../admin-panel/AdminPanel'
+import About from '../../components/about/About'
 import ProfileContainer from '../profile-panel/ProfilePanel'
 import { Route, Switch } from 'react-router-dom'
 class MainContainer extends React.Component  {
@@ -31,6 +32,7 @@ class MainContainer extends React.Component  {
       return (
           <>
           <Switch>
+            <Route exact path='/' render={() => <About loggedIn={loggedIn} />} />
             <Route exact path='/signin' render={() =>(<SignIn error={loginError} clearError={clearLoginError} afterLogin={afterLogin} />)} />
             <Route exact path='/signup' component={SignUp} />
           </Switch>
