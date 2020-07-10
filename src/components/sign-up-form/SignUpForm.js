@@ -35,7 +35,7 @@ export default class SignUpForm extends PureComponent {
             <div className='row'>
               <div className='col s12'>
                 {Object.entries(this.props.errors).map(err=><h4 className='error'>{`Error: ${err[0]} ${err[1][0]}!`}</h4>)}
-                <Input type='text' autoFocus icon='phone_android' classOverRide='input-field col s5 offset-s1' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                <Input type='text' autoFocus icon='phone_android' classOverRide='input-field col s5 offset-s1' pattern="[0-9]{10}"
                 required name='mobileNumber' value={this.state.mobileNumber} label='Mobile Number'  handleChange={this.inputChanged} />
                 <Input type='text' required name='email' classOverRide='input-field col s5' value={this.state.email} label='Email' handleChange={this.inputChanged} />
                 <Input type='text' required icon='person' name='firstName' classOverRide='input-field col s5 offset-s1' value={this.state.firstName} label='First Name' handleChange={this.inputChanged} />

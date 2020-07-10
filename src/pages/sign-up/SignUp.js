@@ -40,7 +40,37 @@ class SignUp extends PureComponent {
 
   render() {
     if (this.state.success) {
-      return <><p>Signup complete!  Now sit back and wait for delicious grape juice offers to be sent to you.</p></>       //on successful signup!
+      return (
+            <>
+              <div className='text-container'>
+                <span>Thanks for signing up for <span className='company-name' >bottlerocket </span></span>
+                <br /><br />
+                <span>Look for our introductory text message at the number you provided explaining how
+                          you can get great bottles of wine, fast!
+                </span>
+                <br /><br />
+                <span>We want to stay friends forever, but if you ever need a break from all the awesome offers,
+                        simply send the message <i>pause</i>.
+                </span>
+                <br /><br />
+                <span>We'd really miss you, but if you get thirsty again, we'll welcome you back with open arms.
+                   Send the message <i>resume</i> and all will be forgiven.
+                </span>
+
+
+                <br /><br /><br />
+                <span>Cheers!</span>
+                <br /><br />
+                <span> Sean Dever + Don Mallory @ <span className='company-name' >bottlerocket </span></span>
+                 <i>
+                  <br /><br />
+                  (in tribute to Matthew Campbell, the best dad ever)</i>
+                
+
+
+              </div>
+      </>       //on successful signup!
+      )
     } else {
       //  signing up or form needs to be updated with error from backend (uniqueness fail for fields etc.)
       return (

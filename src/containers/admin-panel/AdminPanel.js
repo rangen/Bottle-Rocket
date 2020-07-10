@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 // import Analytics from '../analytics/Analytics'
 import './admin-panel.styles.scss'
-// import SubscribedUsers from '../../containers/subscribed-users-container/SubscribedUsersContainer'
+import SubscribedUsersPanel from '../subscribed-users-panel/SubscribedUsersPanel'
 import { Route, Switch } from 'react-router-dom'
 import SignOut from '../../pages/sign-out/SignOut'
 import WinesPanel from '../../pages/wines-panel/WinesPanel'
@@ -54,12 +54,15 @@ class AdminPanel extends Component {
     const { afterLogout } = this.props
 
     return (
+      <>
+      <div onClick={this.dataNeedsUpdate}>UPDATE ADMIN DATA ROCKET LOGO ANCHORED TO THE LEFT</div>
       <Switch>
             <Route exact path='/signout' render={() =>(<SignOut afterLogout={afterLogout} />)} />
             <Route path='/wines' render={() => (<WinesPanel wines={this.state.wines} updateData={this.dataNeedsUpdate} />)} />
             <Route path='/offers' render={() => (<OffersPanel wines={this.state.wines} offers={this.state.offers} updateData={this.dataNeedsUpdate} />)} />
-            {/* <Route path='/subscribedusers' component={OffersPanel} /> */}
+            <Route path='/subscribedusers' render={() => (<SubscribedUsersPanel users={this.state.users} updateData={this.dataNeedsUpdate} />)} />
       </Switch>
+      </>
     )
   }
 }
