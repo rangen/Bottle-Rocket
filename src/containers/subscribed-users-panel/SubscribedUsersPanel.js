@@ -5,8 +5,8 @@ import './subscribed-users-panel.styles.scss'
 const SubscribedUsersPanel = ({ users }) => {
     
   return (
-      <div className='container'>
-          <table className='striped'>
+      <div>
+          <table className='highlight'>
         <thead>
           <tr>
               <th>Mobile Number</th>
